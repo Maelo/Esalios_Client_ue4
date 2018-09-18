@@ -2,10 +2,11 @@
 
 #include "HexBlock.h"
 
-#include "HexCoord.h"
+#include "HexCoordComponent.h"
 
 #include "UObject/ConstructorHelpers.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/TextRenderComponent.h"
 #include "Engine/StaticMesh.h"
 #include "Materials/MaterialInstance.h"
 
@@ -42,7 +43,29 @@ AHexBlock::AHexBlock()
 
 	BlockMesh->SetMaterial(0, ConstructorStatics.BaseMaterial.Get());
 
+	HexCoord = CreateDefaultSubobject<UHexCoordComponent>(TEXT("HexCoord0"));
+	//HexCoord->SetupAttachment(DummyRoot);
+
+	TextRender = CreateDefaultSubobject<UTextRenderComponent>(TEXT("TextCoord0"));
+	TextRender->AttachToComponent(DummyRoot, FAttachmentTransformRules::KeepWorldTransform);
+	TextRender->SetTextRenderColor(FColor::Red);
+	TextRender->SetRelativeLocationAndRotation(FVector(20.f, 25.f, 6.f), FRotator(90.f, 0.f, 0.f));
 }
+
+TPair<int, int> AHexBlock::getCoord() const
+{
+	return HexCoord->getCoord();
+}
+
+void AHexBlock::setCoord(const int x, const int y)
+{
+	HexCoord->setCoord(x, y);
+	
+	FText coordText = FText::FromString(FString("(" + FString::FromInt(x) + "," + FString::FromInt(y) + ")"));
+	GetTextRender()->SetText(coordText);
+}
+
+
 
 // Called when the game starts or when spawned
 void AHexBlock::BeginPlay()

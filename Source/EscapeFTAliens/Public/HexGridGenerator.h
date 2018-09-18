@@ -25,7 +25,10 @@ public:
 
 	/** Spacing of blocks */
 	UPROPERTY(Category = Grid, EditAnywhere, BlueprintReadOnly)
-	float BlockSpacing;
+	float BlockSpacingX;
+
+	UPROPERTY(Category = Grid, EditAnywhere, BlueprintReadOnly)
+	float BlockSpacingY;
 
 protected:
 	// Called when the game starts or when spawned

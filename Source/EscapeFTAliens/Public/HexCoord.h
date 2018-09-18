@@ -9,7 +9,7 @@ private:
 	int x_, y_;
 
 public:
-	HexCoord(int x, int y) : x_(x), y_(y) {};
+	//HexCoord(int x, int y) : x_(x), y_(y) {};
 	HexCoord() {};
 
 	void setx(int x) { x_ = x; }

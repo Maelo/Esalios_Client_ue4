@@ -2,18 +2,13 @@
 
 #pragma once
 
-
-
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-
-
-#include "CoreMinimal.h"
+#include "Containers/Map.h"
 
 #include "HexBlock.generated.h"
 
-
-class HexCoord;
+class UHexCoordComponent;
 
 UCLASS()
 class ESCAPEFTALIENS_API AHexBlock : public AActor
@@ -29,7 +24,12 @@ private:
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* BlockMesh;
 
-	HexCoord coord_();
+	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UHexCoordComponent* HexCoord;
+
+	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UTextRenderComponent* TextRender;
+
 public:	
 	// Sets default values for this actor's properties
 	AHexBlock();
@@ -37,6 +37,9 @@ public:
 	/** Pointer to white material used on the focused block */
 	UPROPERTY()
 	class UMaterial* BaseMaterial;
+
+	TPair<int, int> getCoord() const;
+	void setCoord(const int x, const int y);
 
 protected:
 	// Called when the game starts or when spawned
@@ -50,6 +53,12 @@ public:
 	FORCEINLINE class USceneComponent* GetDummyRoot() const { return DummyRoot; }
 	/** Returns BlockMesh subobject **/
 	FORCEINLINE class UStaticMeshComponent* GetBlockMesh() const { return BlockMesh; }
+
+	/** Returns HexCoord subobject **/
+	FORCEINLINE class UHexCoordComponent* GetHexCoord() const { return HexCoord; }
+
+	/** Returns TextRender subobject **/
+	FORCEINLINE class UTextRenderComponent* GetTextRender() const { return TextRender; }
 
 	
 	
