@@ -1,0 +1,1389 @@
+{
+"name" : "Galilei",
+"size" : {
+			"x": 22,
+			"y" :15
+		},
+"sectorList" : [
+        {
+          "x": "4",
+          "y": "11",
+		  "state":"safe"
+        },
+        {
+          "x": "22",
+          "y": "3",
+	  "state":"safe"
+	},
+        {
+          "x": "22",
+          "y": "4",
+	  "state":"safe"
+	},
+        {
+          "x": "22",
+          "y": "2",
+	  "state":"safe"
+	},
+        {
+          "x": "5",
+          "y": "0",
+	  "state":"safe"
+	},
+        {
+          "x": "22",
+          "y": "5",
+	  "state":"safe"
+	},
+        {
+          "x": "22",
+          "y": "11",
+	  "state":"safe"
+	},
+        {
+          "x": "22",
+          "y": "10",
+	  "state":"safe"
+	},
+        {
+          "x": "22",
+          "y": "9",
+	  "state":"safe"
+	},
+        {
+          "x": "21",
+          "y": "0",
+	  "state":"safe"
+	},
+        {
+          "x": "5",
+          "y": "9",
+	  "state":"safe"
+	},
+        {
+          "x": "21",
+          "y": "7",
+	  "state":"safe"
+	},
+        {
+          "x": "20",
+          "y": "0",
+	  "state":"safe"
+	},
+        {
+          "x": "2",
+          "y": "13",
+	  "state":"safe"
+	},
+        {
+          "x": "20",
+          "y": "11",
+	  "state":"safe"
+	},
+        {
+          "x": "20",
+          "y": "4",
+	  "state":"safe"
+	},
+        {
+          "x": "3",
+          "y": "13",
+	  "state":"safe"
+	},
+        {
+          "x": "3",
+          "y": "9",
+	  "state":"safe"
+	},
+        {
+          "x": "4",
+          "y": "1",
+	  "state":"safe"
+	},
+        {
+          "x": "19",
+          "y": "13",
+	  "state":"safe"
+	},
+        {
+          "x": "19",
+          "y": "7",
+	  "state":"safe"
+	},
+        {
+          "x": "19",
+          "y": "6",
+	  "state":"safe"
+	},
+        {
+          "x": "8",
+          "y": "13",
+	  "state":"safe"
+	},
+        {
+          "x": "8",
+          "y": "8",
+	  "state":"safe"
+	},
+        {
+          "x": "9",
+          "y": "0",
+	  "state":"safe"
+	},
+        {
+          "x": "9",
+          "y": "13",
+	  "state":"safe"
+	},
+        {
+          "x": "10",
+          "y": "8",
+	  "state":"safe"
+	},
+        {
+          "x": "10",
+          "y": "4",
+	  "state":"safe"
+	},
+        {
+          "x": "10",
+          "y": "1",
+	  "state":"safe"
+	},
+        {
+          "x": "6",
+          "y": "6",
+	  "state":"safe"
+	},
+        {
+          "x": "6",
+          "y": "11",
+	  "state":"safe"
+	},
+        {
+          "x": "6",
+          "y": "13",
+	  "state":"safe"
+	},
+        {
+          "x": "7",
+          "y": "0",
+	  "state":"safe"
+	},
+        {
+          "x": "7",
+          "y": "1",
+	  "state":"safe"
+	},
+        {
+          "x": "7",
+          "y": "2",
+	  "state":"safe"
+	},
+        {
+          "x": "7",
+          "y": "6",
+	  "state":"safe"
+	},
+        {
+          "x": "7",
+          "y": "13",
+	  "state":"safe"
+	},
+        {
+          "x": "8",
+          "y": "0",
+	  "state":"safe"
+	},
+        {
+          "x": "13",
+          "y": "2",
+	  "state":"safe"
+	},
+        {
+          "x": "14",
+          "y": "8",
+	  "state":"safe"
+	},
+        {
+          "x": "14",
+          "y": "4",
+	  "state":"safe"
+	},
+        {
+          "x": "13",
+          "y": "13",
+	  "state":"safe"
+	},
+        {
+          "x": "11",
+          "y": "3",
+	  "state":"safe"
+	},
+        {
+          "x": "11",
+          "y": "8",
+	  "state":"safe"
+	},
+        {
+          "x": "11",
+          "y": "1",
+	  "state":"safe"
+	},
+        {
+          "x": "10",
+          "y": "10",
+	  "state":"safe"
+	},
+        {
+          "x": "12",
+          "y": "4",
+	  "state":"safe"
+	},
+        {
+          "x": "12",
+          "y": "8",
+	  "state":"safe"
+	},
+        {
+          "x": "12",
+          "y": "10",
+	  "state":"safe"
+	},
+        {
+          "x": "12",
+          "y": "1",
+	  "state":"safe"
+	},
+        {
+          "x": "11",
+          "y": "10",
+	  "state":"safe"
+	},
+        {
+          "x": "11",
+          "y": "13",
+	  "state":"safe"
+	},
+        {
+          "x": "17",
+          "y": "6",
+	  "state":"safe"
+	},
+        {
+          "x": "17",
+          "y": "7",
+	  "state":"safe"
+	},
+        {
+          "x": "17",
+          "y": "5",
+	  "state":"safe"
+	},
+        {
+          "x": "17",
+          "y": "3",
+	  "state":"safe"
+	},
+        {
+          "x": "17",
+          "y": "0",
+	  "state":"safe"
+	},
+        {
+          "x": "17",
+          "y": "11",
+	  "state":"safe"
+	},
+        {
+          "x": "15",
+          "y": "0",
+	  "state":"safe"
+	},
+        {
+          "x": "15",
+          "y": "2",
+	  "state":"safe"
+	},
+        {
+          "x": "2",
+          "y": "0",
+	  "state":"safe"
+	},
+        {
+          "x": "15",
+          "y": "3",
+	  "state":"safe"
+	},
+        {
+          "x": "15",
+          "y": "11",
+	  "state":"safe"
+	},
+        {
+          "x": "1",
+          "y": "9",
+	  "state":"safe"
+	},
+        {
+          "x": "14",
+          "y": "13",
+	  "state":"safe"
+	},
+        {
+          "x": "1",
+          "y": "4",
+	  "state":"safe"
+	},
+        {
+          "x": "16",
+          "y": "0",
+	  "state":"safe"
+	},
+        {
+          "x": "16",
+          "y": "3",
+	  "state":"safe"
+	},
+        {
+          "x": "16",
+          "y": "5",
+	  "state":"safe"
+	},
+        {
+          "x": "16",
+          "y": "10",
+	  "state":"safe"
+	},
+        {
+          "x": "16",
+          "y": "13",
+	  "state":"safe"
+	},
+        {
+          "x": "0",
+          "y": "10",
+	  "state":"safe"
+	},
+        {
+          "x": "0",
+          "y": "9",
+	  "state":"safe"
+	},
+        {
+          "x": "0",
+          "y": "8",
+	  "state":"safe"
+	},
+        {
+          "x": "0",
+          "y": "12",
+	  "state":"safe"
+	},
+        {
+          "x": "0",
+          "y": "11",
+	  "state":"safe"
+	},
+        {
+          "x": "0",
+          "y": "5",
+	  "state":"safe"
+	},
+        {
+          "x": "0",
+          "y": "4",
+	  "state":"safe"
+	},
+        {
+          "x": "0",
+          "y": "3"
+        },
+        {
+          "x": "4",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "22",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "4",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "4",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "4",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "4",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "4",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "4",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "4",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "5",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "5",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "5",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "22",
+          "y": "13",
+	  "state":"dangerous"
+	},
+        {
+          "x": "22",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "22",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "21",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "21",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "5",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "5",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "5",
+          "y": "6",
+	  "state":"dangerous"
+	},
+        {
+          "x": "5",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "5",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "5",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "6",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "21",
+          "y": "13",
+	  "state":"dangerous"
+	},
+        {
+          "x": "6",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "6",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "6",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "6",
+          "y": "0",
+	  "state":"dangerous"
+	},
+        {
+          "x": "21",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "21",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "21",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "21",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "21",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "21",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "2",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "20",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "2",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "20",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "2",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "2",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "2",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "2",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "2",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "2",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "2",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "2",
+          "y": "6",
+	  "state":"dangerous"
+	},
+        {
+          "x": "2",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "2",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "20",
+          "y": "13",
+	  "state":"dangerous"
+	},
+        {
+          "x": "3",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "20",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "20",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "20",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "20",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "20",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "20",
+          "y": "6",
+	  "state":"dangerous"
+	},
+        {
+          "x": "20",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "20",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "3",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "3",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "3",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "19",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "3",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "3",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "3",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "3",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "4",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "19",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "19",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "19",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "19",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "19",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "8",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "8",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "8",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "8",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "9",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "9",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "9",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "9",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "9",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "9",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "9",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "9",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "9",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "9",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "10",
+          "y": "0",
+	  "state":"dangerous"
+	},
+        {
+          "x": "10",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "10",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "10",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "10",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "6",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "6",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "6",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "6",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "6",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "6",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "7",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "7",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "7",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "7",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "7",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "7",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "8",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "8",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "8",
+          "y": "6",
+	  "state":"dangerous"
+	},
+        {
+          "x": "8",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "8",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "13",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "13",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "13",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "13",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "13",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "13",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "13",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "13",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "13",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "13",
+          "y": "0",
+	  "state":"dangerous"
+	},
+        {
+          "x": "12",
+          "y": "13",
+	  "state":"dangerous"
+	},
+        {
+          "x": "12",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "12",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "14",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "14",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "14",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "14",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "14",
+          "y": "6",
+	  "state":"dangerous"
+	},
+        {
+          "x": "14",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "14",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "14",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "13",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "11",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "11",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "11",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "11",
+          "y": "0",
+	  "state":"dangerous"
+	},
+        {
+          "x": "10",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "10",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "10",
+          "y": "13",
+	  "state":"dangerous"
+	},
+        {
+          "x": "12",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "12",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "12",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "12",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "12",
+          "y": "0",
+	  "state":"dangerous"
+	},
+        {
+          "x": "12",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "11",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "11",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "17",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "17",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "17",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "17",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "17",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "18",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "18",
+          "y": "6",
+	  "state":"dangerous"
+	},
+        {
+          "x": "18",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "18",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "18",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "18",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "18",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "18",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "18",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "15",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "15",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "15",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "15",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "15",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "15",
+          "y": "6",
+	  "state":"dangerous"
+	},
+        {
+          "x": "15",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "15",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "15",
+          "y": "13",
+	  "state":"dangerous"
+	},
+        {
+          "x": "15",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "1",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "1",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "1",
+          "y": "10",
+	  "state":"dangerous"
+	},
+        {
+          "x": "1",
+          "y": "13",
+	  "state":"dangerous"
+	},
+        {
+          "x": "1",
+          "y": "0",
+	  "state":"dangerous"
+	},
+        {
+          "x": "1",
+          "y": "3",
+	  "state":"dangerous"
+	},
+        {
+          "x": "1",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "1",
+          "y": "5",
+	  "state":"dangerous"
+	},
+        {
+          "x": "1",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "16",
+          "y": "1",
+	  "state":"dangerous"
+	},
+        {
+          "x": "16",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "16",
+          "y": "4",
+	  "state":"dangerous"
+	},
+        {
+          "x": "16",
+          "y": "6",
+	  "state":"dangerous"
+	},
+        {
+          "x": "16",
+          "y": "7",
+	  "state":"dangerous"
+	},
+        {
+          "x": "16",
+          "y": "8",
+	  "state":"dangerous"
+	},
+        {
+          "x": "16",
+          "y": "9",
+	  "state":"dangerous"
+	},
+        {
+          "x": "16",
+          "y": "11",
+	  "state":"dangerous"
+	},
+        {
+          "x": "16",
+          "y": "12",
+	  "state":"dangerous"
+	},
+        {
+          "x": "0",
+          "y": "13",
+	  "state":"dangerous"
+	},
+        {
+          "x": "0",
+          "y": "2",
+	  "state":"dangerous"
+	},
+        {
+          "x": "0",
+          "y": "1",
+		  "state":"dangerous"
+        },
+        {
+          "x": "21",
+          "y": "1",
+	  "state":"hatch"
+		},
+        {
+          "x": "21",
+          "y": "12",
+	  "state":"hatch"
+		},
+        {
+          "x": "1",
+          "y": "12",
+	  "state":"hatch"
+		},
+        {
+          "x": "1",
+          "y": "1",
+	  "state":"hatch"
+		},
+      
+		{
+        "x": "11",
+        "y": "5",
+	  "state":"alien"
+		},
+		{
+        "x": "11",
+        "y": "7",
+	  "state":"human"
+		}
+		]
+  }

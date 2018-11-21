@@ -6,19 +6,25 @@
 #include "GameFramework/Actor.h"
 #include "Containers/Map.h"
 
+#include "HexGridGenerator.h"
+
 #include "HexBlock.generated.h"
 
 class UHexCoordComponent;
+class UMaterialInstance;
+
+
+USTRUCT(BlueprintType)
+struct FBlockTypeMaterialInstanceStruct
+{
+	GENERATED_BODY()
+};
 
 UCLASS()
 class ESCAPEFTALIENS_API AHexBlock : public AActor
 {
 	GENERATED_BODY()
 private:
-
-	/** Dummy root component */
-	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	class USceneComponent* DummyRoot;
 
 	/** StaticMesh component for the clickable block */
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
@@ -28,18 +34,40 @@ private:
 	class UHexCoordComponent* HexCoord;
 
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	class UTextRenderComponent* TextRender;
+		class USceneComponent* DummyRoot;
+
+	/*UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UTextRenderComponent* TextRender;*/
+
+	EBlockType BlockType_;
+
+	void GetMaterialRefs();
 
 public:	
 	// Sets default values for this actor's properties
 	AHexBlock();
 
-	/** Pointer to white material used on the focused block */
-	UPROPERTY()
-	class UMaterial* BaseMaterial;
+	AHexBlock(FVector2D blockCoord, EBlockType blockType);
+
+	/*UFUNCTION(BlueprintNativeEvent, Category = "Collision")
+		void OnCursorOver(UPrimitiveComponent* Component);
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Collision")
+		void EndCursorOver(UPrimitiveComponent* Component);*/
+
+	class UMaterialInstanceConstant* SecureMaterial;
+	UMaterialInstanceConstant* DangerMaterial;
+	UMaterialInstanceConstant* BlockedMaterial;
+	UMaterialInstanceConstant* HumanMaterial;
+	UMaterialInstanceConstant* AlienMaterial;
+	UMaterialInstanceConstant* EscapeMaterial;
 
 	TPair<int, int> getCoord() const;
 	void setCoord(const int x, const int y);
+
+	EBlockType GetBlockType() { return BlockType_; }
+
+	void SetBlockType(EBlockType blockType);
 
 protected:
 	// Called when the game starts or when spawned
@@ -58,8 +86,5 @@ public:
 	FORCEINLINE class UHexCoordComponent* GetHexCoord() const { return HexCoord; }
 
 	/** Returns TextRender subobject **/
-	FORCEINLINE class UTextRenderComponent* GetTextRender() const { return TextRender; }
-
-	
-	
+	//FORCEINLINE class UTextRenderComponent* GetTextRender() const { return TextRender; }
 };

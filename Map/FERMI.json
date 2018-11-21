@@ -1,0 +1,279 @@
+{
+"name" : "Fermi",
+"size" : {
+			"x": 15,
+			"y" :12
+		},
+"sectorList" : [
+	{
+	  "x": "13",
+	  "y": "11",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "8",
+	  "y": "11",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "8",
+	  "y": "8",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "13",
+	  "y": "6",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "13",
+	  "y": "2",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "9",
+	  "y": "2",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "14",
+	  "y": "9",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "10",
+	  "y": "3",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "11",
+	  "y": "3",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "11",
+	  "y": "2",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "15",
+	  "y": "10",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "10",
+	  "y": "12",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "12",
+	  "y": "3",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "12",
+	  "y": "1",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "8",
+	  "y": "6",
+	  "state":"dangerous"
+	},
+	{
+	  "x": "13",
+	  "y": "10",
+	  "state":"safe"
+	},
+	{
+	  "x": "13",
+	  "y": "9",
+	  "state":"safe"
+	},
+	{
+	  "x": "13",
+	  "y": "7",
+	  "state":"safe"
+	},
+	{
+	  "x": "8",
+	  "y": "9",
+	  "state":"safe"
+	},
+	{
+	  "x": "13",
+	  "y": "3",
+	  "state":"safe"
+	},
+	{
+	  "x": "9",
+	  "y": "6",
+	  "state":"safe"
+	},
+	{
+	  "x": "9",
+	  "y": "7",
+	  "state":"safe"
+	},
+	{
+	  "x": "12",
+	  "y": "12",
+	  "state":"safe"
+	},
+	{
+	  "x": "9",
+	  "y": "3",
+	  "state":"safe"
+	},
+	{
+	  "x": "14",
+	  "y": "11",
+	  "state":"safe"
+	},
+	{
+	  "x": "9",
+	  "y": "11",
+	  "state":"safe"
+	},
+	{
+	  "x": "14",
+	  "y": "6",
+	  "state":"safe"
+	},
+	{
+	  "x": "9",
+	  "y": "10",
+	  "state":"safe"
+	},
+	{
+	  "x": "14",
+	  "y": "5",
+	  "state":"safe"
+	},
+	{
+	  "x": "9",
+	  "y": "9",
+	  "state":"safe"
+	},
+	{
+	  "x": "14",
+	  "y": "8",
+	  "state":"safe"
+	},
+	{
+	  "x": "10",
+	  "y": "7",
+	  "state":"safe"
+	},
+	{
+	  "x": "10",
+	  "y": "1",
+	  "state":"safe"
+	},
+	{
+	  "x": "10",
+	  "y": "2",
+	  "state":"safe"
+	},
+	{
+	  "x": "11",
+	  "y": "5",
+	  "state":"safe"
+	},
+	{
+	  "x": "11",
+	  "y": "4",
+	  "state":"safe"
+	},
+	{
+	  "x": "11",
+	  "y": "7",
+	  "state":"safe"
+	},
+	{
+	  "x": "11",
+	  "y": "6",
+	  "state":"safe"
+	},
+	{
+	  "x": "15",
+	  "y": "9",
+	  "state":"safe"
+	},
+	{
+	  "x": "10",
+	  "y": "10",
+	  "state":"safe"
+	},
+	{
+	  "x": "7",
+	  "y": "9",
+	  "state":"safe"
+	},
+	{
+	  "x": "12",
+	  "y": "7",
+	  "state":"safe"
+	},
+	{
+	  "x": "12",
+	  "y": "10",
+	  "state":"safe"
+	},
+	{
+	  "x": "7",
+	  "y": "10",
+	  "state":"safe"
+	},
+	{
+	  "x": "12",
+	  "y": "2",
+	  "state":"safe"
+	},
+	{
+	  "x": "11",
+	  "y": "10",
+	  "state":"safe"
+	},
+	{
+	  "x": "11",
+	  "y": "11",
+	  "state":"safe"
+	},
+	{
+	  "x": "8",
+	  "y": "5",
+	  "state":"safe"
+	},
+	{
+	  "x": "13",
+	  "y": "4",
+	  "state":"hatch"
+	},
+	{
+	  "x": "13",
+	  "y": "0",
+	  "state":"hatch"
+	},
+	{
+	  "x": "9",
+	  "y": "4",
+	  "state":"hatch"
+	},
+	{
+	  "x": "9",
+	  "y": "0",
+	  "state":"hatch"
+	},
+	{
+	  "x": "11",
+	  "y": "9",
+	  "state":"human"
+	},
+	{
+	  "x": "11",
+	  "y": "8",
+	  "state":"alien"
+	}
+  ]
+  }

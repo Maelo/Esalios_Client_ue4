@@ -15,6 +15,4 @@ class ESCAPEFTALIENS_API APlayerScrollerController : public APlayerController
 	GENERATED_BODY()
 	
 	
-	
-	
 };
