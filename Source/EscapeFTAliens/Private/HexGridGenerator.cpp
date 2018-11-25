@@ -3,6 +3,7 @@
 #include "HexGridGenerator.h"
 #include "Engine/World.h"
 
+#include "UObject/ConstructorHelpers.h"
 #include "HexBlock.h"
 
 #include "Json.h"
@@ -21,6 +22,8 @@ AHexGridGenerator::AHexGridGenerator()
 	Size = 5;
 	BlockSpacingX = 175;
 	BlockSpacingY = 175;
+
+	GetMaterialRefs();
 }
 
 // Called when the game starts or when spawned
@@ -61,11 +64,34 @@ void AHexGridGenerator::BeginPlay()
 			NewBlock->setCoord(x, y);
 			if (blockSector)
 			{
-				NewBlock->SetBlockType(blockSector->type);
+				switch (blockSector->type)
+				{
+				case EBlockType::BT_SECURE:
+					NewBlock->SetBlockType(blockSector->type, SecureMaterial);
+					break;
+				case EBlockType::BT_DANGER:
+					NewBlock->SetBlockType(blockSector->type, DangerMaterial);
+					break;
+				case EBlockType::BT_HUMAN:
+					NewBlock->SetBlockType(blockSector->type, HumanMaterial);
+					break;
+				case EBlockType::BT_ALIEN:
+					NewBlock->SetBlockType(blockSector->type, AlienMaterial);
+					break;
+				case EBlockType::BT_ESCAPE:
+					NewBlock->SetBlockType(blockSector->type, EscapeMaterial);
+					break;
+				case EBlockType::BT_BLOCKED:
+					NewBlock->SetBlockType(blockSector->type, BlockedMaterial);
+					break;
+				default:
+					NewBlock->SetBlockType(blockSector->type, SecureMaterial);
+					break;
+				}
 			}
 			else
 			{
-				NewBlock->SetBlockType(EBlockType::BT_BLOCKED);
+				NewBlock->SetBlockType(EBlockType::BT_BLOCKED, BlockedMaterial);
 			}
 		}
 	}
@@ -165,3 +191,41 @@ FMapJson AHexGridGenerator::ParseMapJson(FString jsonName)
 	return mapJson;
 }
 
+void AHexGridGenerator::GetMaterialRefs()
+{
+	static ConstructorHelpers::FObjectFinder<UMaterialInstance> SecureMat(TEXT("MaterialInstanceDynamic'/Game/Materials/Blocks/SECURE.SECURE'"));
+	if (SecureMat.Object != NULL)
+	{
+		SecureMaterial = (UMaterialInstanceDynamic*)SecureMat.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<UMaterialInstance> DangerMat(TEXT("MaterialInstanceDynamic'/Game/Materials/Blocks/DANGEROUS.DANGEROUS'"));
+	if (DangerMat.Object != NULL)
+	{
+		DangerMaterial = (UMaterialInstanceDynamic*)DangerMat.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<UMaterialInstance> BlockedMat(TEXT("MaterialInstanceDynamic'/Game/Materials/Blocks/BLOCKED.BLOCKED'"));
+	if (BlockedMat.Object != NULL)
+	{
+		BlockedMaterial = (UMaterialInstanceDynamic*)BlockedMat.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<UMaterialInstance> HumanMat(TEXT("MaterialInstanceDynamic'/Game/Materials/Blocks/HUMAN.HUMAN'"));
+	if (HumanMat.Object != NULL)
+	{
+		HumanMaterial = (UMaterialInstanceDynamic*)HumanMat.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<UMaterialInstance> AlienMat(TEXT("MaterialInstanceDynamic'/Game/Materials/Blocks/ALIEN.ALIEN'"));
+	if (AlienMat.Object != NULL)
+	{
+		AlienMaterial = (UMaterialInstanceDynamic*)AlienMat.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<UMaterialInstance> EscapeMat(TEXT("MaterialInstanceDynamic'/Game/Materials/Blocks/ESCAPE.ESCAPE'"));
+	if (EscapeMat.Object != NULL)
+	{
+		EscapeMaterial = (UMaterialInstanceDynamic*)EscapeMat.Object;
+	}
+}

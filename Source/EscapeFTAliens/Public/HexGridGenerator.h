@@ -70,6 +70,8 @@ class ESCAPEFTALIENS_API AHexGridGenerator : public AActor
 	UPROPERTY(Category = Grid, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class USceneComponent* DummyRoot;
 
+	void GetMaterialRefs();
+
 public:	
 	// Sets default values for this actor's properties
 	AHexGridGenerator();
@@ -84,6 +86,13 @@ public:
 
 	UPROPERTY(Category = Grid, EditAnywhere, BlueprintReadOnly)
 	float BlockSpacingY;
+
+	class UMaterialInstanceDynamic* SecureMaterial;
+	UMaterialInstanceDynamic* DangerMaterial;
+	UMaterialInstanceDynamic* BlockedMaterial;
+	UMaterialInstanceDynamic* HumanMaterial;
+	UMaterialInstanceDynamic* AlienMaterial;
+	UMaterialInstanceDynamic* EscapeMaterial;
 
 protected:
 	// Called when the game starts or when spawned

@@ -25,7 +25,6 @@ class ESCAPEFTALIENS_API AHexBlock : public AActor
 {
 	GENERATED_BODY()
 private:
-
 	/** StaticMesh component for the clickable block */
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* BlockMesh;
@@ -34,40 +33,31 @@ private:
 	class UHexCoordComponent* HexCoord;
 
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-		class USceneComponent* DummyRoot;
+	class USceneComponent* DummyRoot;
 
 	/*UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UTextRenderComponent* TextRender;*/
 
 	EBlockType BlockType_;
 
-	void GetMaterialRefs();
-
 public:	
 	// Sets default values for this actor's properties
 	AHexBlock();
 
-	AHexBlock(FVector2D blockCoord, EBlockType blockType);
+	/*AHexBlock(FVector2D blockCoord, EBlockType blockType);*/
 
-	/*UFUNCTION(BlueprintNativeEvent, Category = "Collision")
+	UFUNCTION(Category = "Collision")
 		void OnCursorOver(UPrimitiveComponent* Component);
 
-	UFUNCTION(BlueprintNativeEvent, Category = "Collision")
-		void EndCursorOver(UPrimitiveComponent* Component);*/
-
-	class UMaterialInstanceConstant* SecureMaterial;
-	UMaterialInstanceConstant* DangerMaterial;
-	UMaterialInstanceConstant* BlockedMaterial;
-	UMaterialInstanceConstant* HumanMaterial;
-	UMaterialInstanceConstant* AlienMaterial;
-	UMaterialInstanceConstant* EscapeMaterial;
+	UFUNCTION(Category = "Collision")
+		void EndCursorOver(UPrimitiveComponent* Component);
 
 	TPair<int, int> getCoord() const;
 	void setCoord(const int x, const int y);
 
 	EBlockType GetBlockType() { return BlockType_; }
 
-	void SetBlockType(EBlockType blockType);
+	void SetBlockType(EBlockType blockType, UMaterialInstanceDynamic* mat);
 
 protected:
 	// Called when the game starts or when spawned
