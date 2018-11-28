@@ -2,6 +2,6 @@
 
 #include "EscapeFTAliensGameModeBase.h"
 
-
-
-
+void AEscapeFTAliensGameModeBase::InitGame(const FString & MapName, const FString & Options, FString & ErrorMessage)
+{
+}

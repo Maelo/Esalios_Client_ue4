@@ -14,6 +14,8 @@ class ESCAPEFTALIENS_API AEscapeFTAliensGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+	// Called when the game starts or when spawned
+	virtual void InitGame(const FString & MapName, const FString & Options, FString & ErrorMessage) override;
 	
 	
 	

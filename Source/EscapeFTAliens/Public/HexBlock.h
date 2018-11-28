@@ -2,41 +2,62 @@
 
 #pragma once
 
-
-
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Containers/Map.h"
 
-
-#include "CoreMinimal.h"
+#include "HexGridGenerator.h"
 
 #include "HexBlock.generated.h"
 
+class UHexCoordComponent;
+class UMaterialInstance;
 
-class HexCoord;
+
+USTRUCT(BlueprintType)
+struct FBlockTypeMaterialInstanceStruct
+{
+	GENERATED_BODY()
+};
 
 UCLASS()
 class ESCAPEFTALIENS_API AHexBlock : public AActor
 {
 	GENERATED_BODY()
 private:
-
-	/** Dummy root component */
-	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	class USceneComponent* DummyRoot;
-
 	/** StaticMesh component for the clickable block */
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* BlockMesh;
 
-	HexCoord coord_();
+	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UHexCoordComponent* HexCoord;
+
+	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class USceneComponent* DummyRoot;
+
+	/*UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UTextRenderComponent* TextRender;*/
+
+	EBlockType BlockType_;
+
 public:	
 	// Sets default values for this actor's properties
 	AHexBlock();
 
-	/** Pointer to white material used on the focused block */
-	UPROPERTY()
-	class UMaterial* BaseMaterial;
+	/*AHexBlock(FVector2D blockCoord, EBlockType blockType);*/
+
+	UFUNCTION(Category = "Collision")
+		void OnCursorOver(UPrimitiveComponent* Component);
+
+	UFUNCTION(Category = "Collision")
+		void EndCursorOver(UPrimitiveComponent* Component);
+
+	TPair<int, int> getCoord() const;
+	void setCoord(const int x, const int y);
+
+	EBlockType GetBlockType() { return BlockType_; }
+
+	void SetBlockType(EBlockType blockType, UMaterialInstanceDynamic* mat);
 
 protected:
 	// Called when the game starts or when spawned
@@ -51,6 +72,9 @@ public:
 	/** Returns BlockMesh subobject **/
 	FORCEINLINE class UStaticMeshComponent* GetBlockMesh() const { return BlockMesh; }
 
-	
-	
+	/** Returns HexCoord subobject **/
+	FORCEINLINE class UHexCoordComponent* GetHexCoord() const { return HexCoord; }
+
+	/** Returns TextRender subobject **/
+	//FORCEINLINE class UTextRenderComponent* GetTextRender() const { return TextRender; }
 };
