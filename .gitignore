@@ -1,5 +1,7 @@
 # Visual Studio 2015 user specific files
 .vs/
+.vscode/
+EscapeFTAliens.code-workspace
 
 # Compiled Object files
 *.slo
