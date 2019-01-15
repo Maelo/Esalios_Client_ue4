@@ -2,6 +2,11 @@
 
 #include "PlayerScrollerController.h"
 
+void APlayerScrollerController::SetupInputComponent()
+{
+	bShowMouseCursor = true;
 
+	bEnableMouseOverEvents = true;
+	bEnableClickEvents = true;
 
-
+}

@@ -18,9 +18,5 @@ void AjsonMapParser::ParseJson(FString jsonName)
 	FString contentFolder = FPaths::GameContentDir();
 
 	FString pathTojson = contentFolder + "\\..\\Map\\" + jsonName;
-
-
-
-
 }
 

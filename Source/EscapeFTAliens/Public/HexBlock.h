@@ -13,7 +13,6 @@
 class UHexCoordComponent;
 class UMaterialInstance;
 
-
 USTRUCT(BlueprintType)
 struct FBlockTypeMaterialInstanceStruct
 {
@@ -35,12 +34,16 @@ private:
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class USceneComponent* DummyRoot;
 
+	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	USceneComponent* PlayerPositionComponent;
+
 	/*UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UTextRenderComponent* TextRender;*/
 
 	EBlockType BlockType_;
 
 public:	
+
 	// Sets default values for this actor's properties
 	AHexBlock();
 
@@ -51,6 +54,9 @@ public:
 
 	UFUNCTION(Category = "Collision")
 		void EndCursorOver(UPrimitiveComponent* Component);
+
+	UFUNCTION(Category = "Collision")
+		void OnClick(UPrimitiveComponent* ClickedComp, FKey ButtonPressed);
 
 	TPair<int, int> getCoord() const;
 	void setCoord(const int x, const int y);
