@@ -15,9 +15,7 @@ AGameManager::AGameManager()
 
 void AGameManager::MovePlayer(AHexBlock* block)
 {
-	
 	PlayerRepresentation->SetActorLocation(block->GetActorLocation());
-	//PlayerRepresentation->
 }
 
 // Called when the game starts or when spawned
@@ -48,8 +46,6 @@ void AGameManager::BeginPlay()
 			MovePlayer(Mesh);
 
 			break;
-
-			
 		}
 	}
 }

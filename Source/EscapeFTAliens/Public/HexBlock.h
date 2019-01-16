@@ -8,10 +8,12 @@
 
 #include "HexGridGenerator.h"
 
+#include "HexCoordComponent.h"
 #include "HexBlock.generated.h"
 
 class UHexCoordComponent;
 class UMaterialInstance;
+
 
 USTRUCT(BlueprintType)
 struct FBlockTypeMaterialInstanceStruct
@@ -29,7 +31,7 @@ private:
 	class UStaticMeshComponent* BlockMesh;
 
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	class UHexCoordComponent* HexCoord;
+	UHexCoordComponent* HexCoordComponent;
 
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class USceneComponent* DummyRoot;
@@ -58,7 +60,7 @@ public:
 	UFUNCTION(Category = "Collision")
 		void OnClick(UPrimitiveComponent* ClickedComp, FKey ButtonPressed);
 
-	TPair<int, int> getCoord() const;
+	const HexCoord& getCoord() const { return HexCoordComponent->getCoord(); };
 	void setCoord(const int x, const int y);
 
 	EBlockType GetBlockType() { return BlockType_; }
@@ -79,7 +81,7 @@ public:
 	FORCEINLINE class UStaticMeshComponent* GetBlockMesh() const { return BlockMesh; }
 
 	/** Returns HexCoord subobject **/
-	FORCEINLINE class UHexCoordComponent* GetHexCoord() const { return HexCoord; }
+	FORCEINLINE class UHexCoordComponent* GetHexCoord() const { return HexCoordComponent; }
 
 	/** Returns TextRender subobject **/
 	//FORCEINLINE class UTextRenderComponent* GetTextRender() const { return TextRender; }

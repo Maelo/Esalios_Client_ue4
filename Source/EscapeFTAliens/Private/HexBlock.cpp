@@ -2,7 +2,7 @@
 
 #include "HexBlock.h"
 
-#include "HexCoordComponent.h"
+
 
 #include "UObject/ConstructorHelpers.h"
 #include "Components/StaticMeshComponent.h"
@@ -45,7 +45,7 @@ AHexBlock::AHexBlock()
 
 	BlockMesh->GetBodySetup()->CollisionTraceFlag = ECollisionTraceFlag::CTF_UseSimpleAsComplex;
 
-	HexCoord = CreateDefaultSubobject<UHexCoordComponent>(TEXT("HexCoord0"));
+	HexCoordComponent = CreateDefaultSubobject<UHexCoordComponent>(TEXT("HexCoord0"));
 
 	PlayerPositionComponent = CreateDefaultSubobject<USceneComponent>(TEXT("PlayerPosition0"));
 	PlayerPositionComponent->SetRelativeLocation(FVector(0.f, 0.f, 30.f));
@@ -54,8 +54,6 @@ AHexBlock::AHexBlock()
 
 void AHexBlock::OnCursorOver(UPrimitiveComponent * Component)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Block Type: %d, %d"), GetHexCoord()->getx(), GetHexCoord()->gety());
-
 	UMaterialInstanceDynamic * mat = Cast<UMaterialInstanceDynamic>(BlockMesh->GetMaterial(0));
 	if (mat)
 	{
@@ -74,14 +72,12 @@ void AHexBlock::EndCursorOver(UPrimitiveComponent * Component)
 
 void AHexBlock::OnClick(UPrimitiveComponent* ClickedComp, FKey ButtonPressed)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Click: %d, %d"), GetHexCoord()->getx(), GetHexCoord()->gety());
-
 	AGameManager *GameManager = nullptr;
 
 	for (TActorIterator<AGameManager> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 	{
-		// Same as with the Object Iterator, access the subclass instance with the * or -> operators.
 		GameManager = *ActorItr;
+		break;
 	}
 
 	if (GameManager)
@@ -90,14 +86,9 @@ void AHexBlock::OnClick(UPrimitiveComponent* ClickedComp, FKey ButtonPressed)
 	}
 }
 
-TPair<int, int> AHexBlock::getCoord() const
-{
-	return HexCoord->getCoord();
-}
-
 void AHexBlock::setCoord(const int x, const int y)
 {
-	HexCoord->setCoord(x, y);
+	HexCoordComponent->setCoord(x, y);
 }
 
 void AHexBlock::SetBlockType(EBlockType blockType, UMaterialInstanceDynamic* mat)

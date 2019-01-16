@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "HexCoord.h"
+
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Containers/Map.h"
@@ -18,18 +20,14 @@ public:
 	UHexCoordComponent();
 
 private:
-	int x_, y_;
+	HexCoord hexCoord_;
 
 public:
-	UHexCoordComponent(int x, int y) : x_(x), y_(y) {};
+	UHexCoordComponent(const TPair<int,int> coord) : hexCoord_(coord) {};
 
-	void setx(int x) { x_ = x; }
-	void sety(int y) { x_ = y; }
+	void setCoord(const int x, const int y) { hexCoord_.setCoord( TPair<int, int>(x, y) ); }
+	void setCoord(TPair<int, int> coord) { hexCoord_.setCoord(coord); }
 
-	void setCoord(const int x, const int y) { x_ = x; y_ = y; }
-
-	const int getx() const { return x_; }
-	const int gety() const { return y_; }
-
-	const TPair<int, int> getCoord() const { return TPair<int, int>(x_, y_); }
+	const HexCoord& getCoord() const { return hexCoord_; }
 };
+
