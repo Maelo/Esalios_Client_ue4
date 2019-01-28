@@ -23,7 +23,4 @@ protected:
 public:	
 
 	void ParseJson(FString jsonName);
-
-	
-	
 };

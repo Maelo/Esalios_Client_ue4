@@ -6,8 +6,8 @@
 #include "UObject/ConstructorHelpers.h"
 #include "HexBlock.h"
 
-#include "Json.h"
-#include "JsonSerializer.h"
+#include "Utilities/JsonParser.h"
+
 #include "FileManager.h"
 #include "Misc/Paths.h"
 
@@ -31,17 +31,22 @@ void AHexGridGenerator::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FMapJson map = ParseMapJson("GALILEITest.json");
+	EFTAMap* map;
 
+	map = EFTAJsonParser::ParseMapJson("GALILEITest.json");
 
-	for (int32 x = 0; x <= map.sizeMap.X; ++x)
+	const TArray<FSector> sectorList = map->getSectorList();
+
+	const FVector2D sizeMap = map->getSize();
+
+	for (int32 x = 0; x <= sizeMap.X; ++x)
 	{
-		for (int32 y = 0; y <= map.sizeMap.Y; ++y)
+		for (int32 y = 0; y <= sizeMap.Y; ++y)
 		{
 			FSector*  blockSector = nullptr;
-			for (int32 i = 0; i < map.sectorList.Num(); ++i)
+			for (int32 i = 0; i < sectorList.Num(); ++i)
 			{
-				FSector tempSector = map.sectorList[i];
+				FSector tempSector = sectorList[i];
 				if (tempSector.x == x && tempSector.y == y)
 				{
 					blockSector = &tempSector;
@@ -101,74 +106,6 @@ void AHexGridGenerator::BeginPlay()
 void AHexGridGenerator::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-}
-
-FMapJson AHexGridGenerator::ParseMapJson(FString jsonName)
-{
-	FString contentFolder = FPaths::GameContentDir();
-	FString JsonFilePath = contentFolder + "\\..\\Map\\" + jsonName;
-
-	FString JsonString; //Json converted to FString
-
-	FFileHelper::LoadFileToString(JsonString, *JsonFilePath);
-
-	TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject());
-	TSharedRef<TJsonReader<>> JsonReader = TJsonReaderFactory<>::Create(JsonString);
-
-	FMapJson mapJson;
-
-	if (FJsonSerializer::Deserialize(JsonReader, JsonObject) && JsonObject.IsValid())
-	{
-		//The person "object" that is retrieved from the given json file
-		TArray <TSharedPtr<FJsonValue>> sectorArray = JsonObject->GetArrayField("sectorList");
-
-		mapJson.nameMap = JsonObject->GetStringField("name");
-
-		TSharedPtr<FJsonObject> mapSizeJson = JsonObject->GetObjectField("size");
-
-		mapJson.sizeMap.X = mapSizeJson->GetNumberField("x");
-		mapJson.sizeMap.Y = mapSizeJson->GetNumberField("y");
-
-		for (const auto& sector : sectorArray)
-		{
-			TSharedPtr<FJsonObject> sectorObj = sector->AsObject();
-
-			int32 x = FCString::Atoi(*sectorObj->GetStringField("x"));
-			int32 y = FCString::Atoi(*sectorObj->GetStringField("y"));
-			FString strType = sectorObj->GetStringField("state");
-
-			EBlockType blockType = EBlockType::BT_BLOCKED;
-
-			if (strType.Equals(TEXT("dangerous")))
-			{
-				blockType = EBlockType::BT_DANGER;
-			}
-			else if (strType.Equals(TEXT("safe")))
-			{
-				blockType = EBlockType::BT_SECURE;
-			}
-			else if (strType.Equals(TEXT("hatch")))
-			{
-				blockType = EBlockType::BT_ESCAPE;
-			}
-			else if (strType.Equals(TEXT("human")))
-			{
-				blockType = EBlockType::BT_HUMAN;
-			}
-			else if (strType.Equals(TEXT("alien")))
-			{
-				blockType = EBlockType::BT_ALIEN;
-			}
-
-			mapJson.sectorList.Add(FSector(x, y, blockType));
-		}
-	}
-	else
-	{
-		GLog->Log("couldn't deserialize");
-	}
-
-	return mapJson;
 }
 
 void AHexGridGenerator::GetMaterialRefs()
