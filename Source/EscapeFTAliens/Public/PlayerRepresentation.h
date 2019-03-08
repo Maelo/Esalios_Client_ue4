@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "PlayerRepresentation.generated.h"
 
+class AHexBlock;
+
 UCLASS()
 class ESCAPEFTALIENS_API APlayerRepresentation : public AActor
 {
@@ -14,6 +16,8 @@ class ESCAPEFTALIENS_API APlayerRepresentation : public AActor
 public:	
 	// Sets default values for this actor's properties
 	APlayerRepresentation();
+
+	void updatePosition(AHexBlock*);
 
 protected:
 	// Called when the game starts or when spawned

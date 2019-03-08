@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Containers/Map.h"
 
-#include "HexGridGenerator.h"
+#include "GridManager.h"
 
 #include "HexCoordComponent.h"
 #include "HexBlock.generated.h"

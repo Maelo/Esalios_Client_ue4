@@ -5,12 +5,14 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "EscapeFTAliens/Utilities/EFTAMap.h"
+#include "Grid.h"
 
-#include "HexGridGenerator.generated.h"
+#include "GridManager.generated.h"
 
+class AHexBlock;
 
 UCLASS()
-class ESCAPEFTALIENS_API AHexGridGenerator : public AActor
+class ESCAPEFTALIENS_API AGridManager : public AActor
 {
 	GENERATED_BODY()
 	
@@ -22,7 +24,7 @@ class ESCAPEFTALIENS_API AHexGridGenerator : public AActor
 
 public:	
 	// Sets default values for this actor's properties
-	AHexGridGenerator();
+	AGridManager();
 
 	/** Number of blocks along each side of grid */
 	UPROPERTY(Category = Grid, EditAnywhere, BlueprintReadOnly)
@@ -42,14 +44,24 @@ public:
 	UMaterialInstanceDynamic* AlienMaterial;
 	UMaterialInstanceDynamic* EscapeMaterial;
 
+	void GenerateMap(EFTAMap* map);
+
+	AHexBlock* GetHexBlock(FVector2D blockPosition);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	/** Returns DummyRoot subobject **/
 	FORCEINLINE class USceneComponent* GetDummyRoot() const { return DummyRoot; }
+
+private:
+
+	FVector2D sizeMap;
+
+	Grid grid;
 };

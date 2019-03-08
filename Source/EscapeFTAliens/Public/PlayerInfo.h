@@ -31,6 +31,9 @@ private:
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UHexCoordComponent* HexCoord;
 
+	//UID
+	FString uniqueID;
+
 	// nb movement per turn
 	int nbMovement;
 	

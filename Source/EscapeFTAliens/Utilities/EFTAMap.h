@@ -17,22 +17,46 @@ struct FSector
 {
 	FSector() {};
 
-	FSector(int x_, int y_, EBlockType type_) : x(x_), y(y_), type(type_) {};
-
-	int x;
-
-	int y;
-
-	EBlockType type;
+	FSector(const int x_, const int y_, const EBlockType type_) 
+		: x(x_)
+		, y(y_)
+		, type(type_) 
+	{};
 
 	bool operator==(const FSector& other) const
 	{
-		if (x == other.x && y == other.y)
+		if (getX() == other.getX() && getY() == other.getY())
 		{
 			return true;
 		}
 		return false;
 	}
+
+	EBlockType type;
+
+	int getX() const 
+	{ 
+		return x; 
+	}
+
+	void setX(int val) 
+	{ 
+		x = val; 
+	}
+
+	int getY() const 
+	{ 
+		return y; 
+	}
+
+	void setY(int val) 
+	{ 
+		y = val; 
+	}
+
+private:
+	int x;
+	int y;
 };
 
 class EFTAMap

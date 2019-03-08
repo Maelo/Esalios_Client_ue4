@@ -5,6 +5,7 @@
 #include "UObject/ConstructorHelpers.h"
 #include "UObjectGlobals.h"
 #include "PlayerInfo.h"
+#include "HexBlock.h"
 
 // Sets default values
 APlayerRepresentation::APlayerRepresentation()
@@ -26,14 +27,23 @@ APlayerRepresentation::APlayerRepresentation()
 void APlayerRepresentation::BeginPlay()
 {
 	Super::BeginPlay();
-	//PlayerInfo->UpdatePosition(11, 7);
-	
+}
+
+void APlayerRepresentation::updatePosition(AHexBlock* block)
+{
+	if (!block)
+	{
+		return;
+	}
+
+	SetActorLocation(block->GetActorLocation());
+	//TODO
+	//PlayerInfo->UpdatePosition(block->getCoord().getx(), block->getCoord().gety());
 }
 
 // Called every frame
 void APlayerRepresentation::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 

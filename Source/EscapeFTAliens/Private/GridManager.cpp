@@ -1,9 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "HexGridGenerator.h"
+#include "GridManager.h"
 #include "Engine/World.h"
 
 #include "UObject/ConstructorHelpers.h"
+#include "Public/EngineUtils.h"
 #include "HexBlock.h"
 
 #include "Utilities/JsonParser.h"
@@ -12,7 +13,7 @@
 #include "Misc/Paths.h"
 
 // Sets default values
-AHexGridGenerator::AHexGridGenerator()
+AGridManager::AGridManager()
 {
 	// Create dummy root scene component
 	DummyRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Dummy0"));
@@ -26,18 +27,32 @@ AHexGridGenerator::AHexGridGenerator()
 	GetMaterialRefs();
 }
 
-// Called when the game starts or when spawned
-void AHexGridGenerator::BeginPlay()
+AHexBlock * AGridManager::GetHexBlock(FVector2D blockPosition)
 {
-	Super::BeginPlay();
+	if (blockPosition.X >= sizeMap.X || blockPosition.Y >= sizeMap.Y)
+	{
+		return nullptr;
+	}
 
-	EFTAMap* map;
+	FString blockName = grid.Rows[blockPosition.X].Columns[blockPosition.Y];
 
-	map = EFTAJsonParser::ParseMapJson("GALILEITest.json");
+	for (TActorIterator<AHexBlock> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+	{
+		if (ActorItr->GetName().Equals(blockName))
+		{
+			return *ActorItr;
+		}
+	}
+	return nullptr;
+}
 
+void AGridManager::GenerateMap(EFTAMap * map)
+{
 	const TArray<FSector> sectorList = map->getSectorList();
 
-	const FVector2D sizeMap = map->getSize();
+	sizeMap = map->getSize();
+
+	grid.AddUninitialized(sizeMap.X + 1, sizeMap.Y + 1);
 
 	for (int32 x = 0; x <= sizeMap.X; ++x)
 	{
@@ -47,7 +62,7 @@ void AHexGridGenerator::BeginPlay()
 			for (int32 i = 0; i < sectorList.Num(); ++i)
 			{
 				FSector tempSector = sectorList[i];
-				if (tempSector.x == x && tempSector.y == y)
+				if (tempSector.getX() == x && tempSector.getY() == y)
 				{
 					blockSector = &tempSector;
 					break;
@@ -67,6 +82,7 @@ void AHexGridGenerator::BeginPlay()
 			AHexBlock* NewBlock = GetWorld()->SpawnActor<AHexBlock>(BlockLocation, FRotator(0, 0, 0));
 
 			NewBlock->setCoord(x, y);
+
 			if (blockSector)
 			{
 				switch (blockSector->type)
@@ -98,17 +114,32 @@ void AHexGridGenerator::BeginPlay()
 			{
 				NewBlock->SetBlockType(EBlockType::BT_BLOCKED, BlockedMaterial);
 			}
+
+			grid.Rows[x].Columns[y] = NewBlock->GetName();
 		}
 	}
 }
 
+// Called when the game starts or when spawned
+void AGridManager::BeginPlay()
+{
+	Super::BeginPlay();
+
+	//TESTING CODE, generate Map locally (from local json)
+	/*EFTAMap* map;
+
+	map = EFTAJsonParser::ParseMapJson("GALILEITest.json");
+
+	GenerateMap(map);*/
+}
+
 // Called every frame
-void AHexGridGenerator::Tick(float DeltaTime)
+void AGridManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
 
-void AHexGridGenerator::GetMaterialRefs()
+void AGridManager::GetMaterialRefs()
 {
 	static ConstructorHelpers::FObjectFinder<UMaterialInstance> SecureMat(TEXT("MaterialInstanceDynamic'/Game/Materials/Blocks/SECURE.SECURE'"));
 	if (SecureMat.Object != NULL)
