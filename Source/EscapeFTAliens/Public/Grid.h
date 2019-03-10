@@ -34,8 +34,8 @@ struct FGridRow
 class ESCAPEFTALIENS_API Grid
 {
 public:
-	Grid();
-	~Grid();
+	Grid() {};
+	~Grid() {};
 
 	UPROPERTY()
 	TArray<FGridRow> Rows;

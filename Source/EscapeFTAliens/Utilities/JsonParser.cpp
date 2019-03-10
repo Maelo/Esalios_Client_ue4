@@ -35,63 +35,56 @@ TSharedPtr<EFTAMap> EFTAJsonParser::ParseMapJson(const FString& jsonName)
 
 TSharedPtr<EFTAMap> EFTAJsonParser::ParseMapJson(TSharedPtr<FJsonObject> jsonObject)
 {
-	const TSharedPtr<FJsonObject>* mapContentNode;
+	const TSharedPtr<FJsonObject>* mapContentNode = nullptr;
 	TSharedPtr<EFTAMap> map;
 
-	if (jsonObject.Get() != NULL)
+	if (jsonObject.Get() != NULL && jsonObject->TryGetObjectField("mapContent", mapContentNode))
 	{
-		if (jsonObject->TryGetObjectField("mapContent", mapContentNode))
+		//The person "object" that is retrieved from the given json file
+		TArray <TSharedPtr<FJsonValue>> sectorArray = mapContentNode->Get()->GetArrayField("sectorList");
+
+		FString mapName = mapContentNode->Get()->GetStringField("name");
+
+		TSharedPtr<FJsonObject> mapSizeJson = mapContentNode->Get()->GetObjectField("size");
+
+		FVector2D size;
+		size.X = mapSizeJson->GetNumberField("x");
+		size.Y = mapSizeJson->GetNumberField("y");
+
+		map = MakeShareable(new EFTAMap(mapName, size));
+
+		for (const auto& sector : sectorArray)
 		{
-			//The person "object" that is retrieved from the given json file
-			TArray <TSharedPtr<FJsonValue>> sectorArray = mapContentNode->Get()->GetArrayField("sectorList");
+			TSharedPtr<FJsonObject> sectorObj = sector->AsObject();
 
-			FString mapName = mapContentNode->Get()->GetStringField("name");
+			int32 x = FCString::Atoi(*sectorObj->GetStringField("x"));
+			int32 y = FCString::Atoi(*sectorObj->GetStringField("y"));
+			FString strType = sectorObj->GetStringField("state");
 
-			TSharedPtr<FJsonObject> mapSizeJson = mapContentNode->Get()->GetObjectField("size");
+			EBlockType blockType = EBlockType::BT_BLOCKED;
 
-			FVector2D size;
-			size.X = mapSizeJson->GetNumberField("x");
-			size.Y = mapSizeJson->GetNumberField("y");
-
-			map = MakeShareable(new EFTAMap(mapName, size));
-
-			for (const auto& sector : sectorArray)
+			if (strType.Equals(TEXT("dangerous")))
 			{
-				TSharedPtr<FJsonObject> sectorObj = sector->AsObject();
-
-				int32 x = FCString::Atoi(*sectorObj->GetStringField("x"));
-				int32 y = FCString::Atoi(*sectorObj->GetStringField("y"));
-				FString strType = sectorObj->GetStringField("state");
-
-				EBlockType blockType = EBlockType::BT_BLOCKED;
-
-				if (strType.Equals(TEXT("dangerous")))
-				{
-					blockType = EBlockType::BT_DANGER;
-				}
-				else if (strType.Equals(TEXT("safe")))
-				{
-					blockType = EBlockType::BT_SECURE;
-				}
-				else if (strType.Equals(TEXT("hatch")))
-				{
-					blockType = EBlockType::BT_ESCAPE;
-				}
-				else if (strType.Equals(TEXT("human")))
-				{
-					blockType = EBlockType::BT_HUMAN;
-				}
-				else if (strType.Equals(TEXT("alien")))
-				{
-					blockType = EBlockType::BT_ALIEN;
-				}
-
-				map->addSector(FSector(x, y, blockType));
+				blockType = EBlockType::BT_DANGER;
 			}
-		}
-		else
-		{
-			return nullptr;
+			else if (strType.Equals(TEXT("safe")))
+			{
+				blockType = EBlockType::BT_SECURE;
+			}
+			else if (strType.Equals(TEXT("hatch")))
+			{
+				blockType = EBlockType::BT_ESCAPE;
+			}
+			else if (strType.Equals(TEXT("human")))
+			{
+				blockType = EBlockType::BT_HUMAN;
+			}
+			else if (strType.Equals(TEXT("alien")))
+			{
+				blockType = EBlockType::BT_ALIEN;
+			}
+
+			map->addSector(FSector(x, y, blockType));
 		}
 	}
 	else

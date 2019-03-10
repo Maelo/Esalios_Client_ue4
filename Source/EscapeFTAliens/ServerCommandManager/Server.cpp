@@ -54,7 +54,6 @@ void AServerManager::sendCall(TSharedPtr<HttpRequest> requestConf)
 	Request->ProcessRequest();
 
 	requestConf->postRequestSent();
-	
 }
 
 void AServerManager::onResponseReceived(FHttpRequestPtr Request, 

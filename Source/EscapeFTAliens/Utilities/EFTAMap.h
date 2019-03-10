@@ -2,7 +2,7 @@
 #include "CoreMinimal.h"
 #include "EFTAMap.generated.h"
 
-UENUM(BlueprintType)		//"BlueprintType" is essential to include
+UENUM(BlueprintType)
 enum class EBlockType : uint8
 {
 	BT_SECURE 	UMETA(DisplayName = "Secure Sector"),

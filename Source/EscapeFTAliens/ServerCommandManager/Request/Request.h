@@ -9,19 +9,13 @@ class HttpRequest
 {
 public:
 
-	enum class NameRequest : uint8
-	{
-		CreateGame 	UMETA(DisplayName = "CreateGame"),
-		GetPlayer 	UMETA(DisplayName = "GetPlayer")
-	};
-
 	enum Type
 	{
 		GET,
 		POST
 	};
 
-	HttpRequest(FString urlPath, Type type, NameRequest name, int8 expiredAfter_ = 10)
+	HttpRequest(const FString& urlPath, Type type, const FString& name, int8 expiredAfter_ = 10)
 		: urlPath_(urlPath)
 		, type_(type)
 		, receivedReponse_(false)
@@ -55,7 +49,7 @@ public:
 
 	FDateTime getDateTimeExpiration() { return dateTimeExpiration_; }
 
-	NameRequest getNameRequest() { return nameResquest_; }
+	const FString& getNameRequest() const { return nameResquest_; }
 
 	bool isExpired() { return expired_; }
 
@@ -87,7 +81,7 @@ private:
 
 	TArray<TPair<FString, FString>> params;
 
-	NameRequest nameResquest_;
+	FString nameResquest_;
 
 	FDateTime timeCreated_;
 

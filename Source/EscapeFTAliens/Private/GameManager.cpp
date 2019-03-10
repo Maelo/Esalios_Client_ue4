@@ -78,7 +78,7 @@ void AGameManager::Tick(float DeltaTime)
 
 			for (TSharedPtr<HttpRequest> call : WaitCalls_)
 			{
-				if (call->getNameRequest() == HttpRequest::NameRequest::CreateGame)
+				if (call->getNameRequest() == "GameRequest")
 				{
 					waitingGameRequest = true;
 
