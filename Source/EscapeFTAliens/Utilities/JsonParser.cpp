@@ -7,7 +7,7 @@
 #include "JsonSerializer.h"
 
 
-EFTAMap* EFTAJsonParser::ParseMapJson(const FString& jsonName)
+TSharedPtr<EFTAMap> EFTAJsonParser::ParseMapJson(const FString& jsonName)
 {
 	FString contentFolder = FPaths::GameContentDir();
 	FString JsonFilePath = contentFolder + "\\..\\Map\\" + jsonName;
@@ -33,10 +33,10 @@ EFTAMap* EFTAJsonParser::ParseMapJson(const FString& jsonName)
 	return nullptr;
 }
 
-EFTAMap * EFTAJsonParser::ParseMapJson(TSharedPtr<FJsonObject> jsonObject)
+TSharedPtr<EFTAMap> EFTAJsonParser::ParseMapJson(TSharedPtr<FJsonObject> jsonObject)
 {
 	const TSharedPtr<FJsonObject>* mapContentNode;
-	EFTAMap* map;
+	TSharedPtr<EFTAMap> map;
 
 	if (jsonObject.Get() != NULL)
 	{
@@ -53,7 +53,7 @@ EFTAMap * EFTAJsonParser::ParseMapJson(TSharedPtr<FJsonObject> jsonObject)
 			size.X = mapSizeJson->GetNumberField("x");
 			size.Y = mapSizeJson->GetNumberField("y");
 
-			map = new EFTAMap(mapName, size);
+			map = MakeShareable(new EFTAMap(mapName, size));
 
 			for (const auto& sector : sectorArray)
 			{

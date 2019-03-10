@@ -3,21 +3,17 @@
 #include "Serialization/JsonSerializer.h"
 #include "EscapeFTAliens/ServerCommandManager/Request/Request.h"
 
-void AServerManager::sendCall(TSharedPtr<HttpRequest> requestConf)
+const FString AServerManager::constructUrl(TSharedPtr<HttpRequest> requestConf)
 {
-	//TODO
 	FString url(host_ + requestConf->getUrlPath());
 
-	TSharedRef<IHttpRequest> Request = Http->CreateRequest();
-	Request->OnProcessRequestComplete().BindUObject(this, &AServerManager::onResponseReceived, requestConf);
-	
 	auto paramList = requestConf->getParams();
 
 	if (paramList.Num())
 	{
 		url += "?";
 
-		
+
 
 		for (int i = 0; i < paramList.Num(); i++) {
 			TPair<FString, FString> paramPair = paramList[i];
@@ -30,6 +26,17 @@ void AServerManager::sendCall(TSharedPtr<HttpRequest> requestConf)
 			}
 		}
 	}
+
+	return url;
+}
+
+
+void AServerManager::sendCall(TSharedPtr<HttpRequest> requestConf)
+{
+	FString url(constructUrl(requestConf));
+
+	TSharedRef<IHttpRequest> Request = Http->CreateRequest();
+	Request->OnProcessRequestComplete().BindUObject(this, &AServerManager::onResponseReceived, requestConf);
 
 	Request->SetURL(url);
 
@@ -72,7 +79,6 @@ void AServerManager::onResponseReceived(FHttpRequestPtr Request,
 
 AServerManager::AServerManager(const FObjectInitializer & ObjectInitializer)
 	: Http(&FHttpModule::Get())
-	//, host_("http://127.0.0.1:5000")
 	, host_("https://qxjasvc7j1.execute-api.us-east-1.amazonaws.com/Prod")
 {
 }

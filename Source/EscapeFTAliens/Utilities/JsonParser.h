@@ -8,7 +8,7 @@ class FString;
 class EFTAJsonParser
 {
 public :
-	static EFTAMap* ParseMapJson(const FString& jsonName);
+	static TSharedPtr<EFTAMap> ParseMapJson(const FString& jsonName);
 
-	static EFTAMap* ParseMapJson(TSharedPtr<FJsonObject> jsonObject);
+	static TSharedPtr<EFTAMap> ParseMapJson(TSharedPtr<FJsonObject> jsonObject);
 };

@@ -26,6 +26,7 @@ void AGameManager::MovePlayer(AHexBlock* block)
 void AGameManager::BeginPlay()
 {
 	GameState_ = GameState::Connecting;
+	RoundState_ = RoundState::NotConnected;
 
 	Super::BeginPlay();
 	OnPlayerMoveRequest.AddDynamic(this, &AGameManager::MovePlayer);
@@ -54,10 +55,11 @@ void AGameManager::BeginPlay()
 		gridManager_ = *ActorItr;
 	}
 
-	/*TSharedPtr <GetPlayerRequest> getPlayerInfo(new GetPlayerRequest());
-	ServerManager->sendCall(getPlayerInfo);
-	WaitCalls_.Add(getPlayerInfo);*/
+	if (!gridManager_)
+	{
+		gridManager_ = GetWorld()->SpawnActor<AGridManager>(FVector(0,0,0) , FRotator(0, 0, 0));
 
+	}
 }
 
 
@@ -85,7 +87,8 @@ void AGameManager::Tick(float DeltaTime)
 						PostGameRequest* postgameRequest = (PostGameRequest*)(call.Get());
 						if (postgameRequest)
 						{
-							if (postgameRequest->getMap())
+							postgameRequest->getMap();
+							if (postgameRequest->getMap().IsValid())
 							{
 								gridManager_->GenerateMap(postgameRequest->getMap());
 

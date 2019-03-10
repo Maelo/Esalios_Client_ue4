@@ -12,18 +12,21 @@ class ESCAPEFTALIENS_API AServerManager : public AActor
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
-	FString host_;
-
-	FHttpModule * Http;
-
 public:
 	void sendCall(TSharedPtr<HttpRequest>);
 
 	void onResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful, TSharedPtr<HttpRequest>);
-	void GetPlayers();
 
 	AServerManager(const class FObjectInitializer& ObjectInitializer);
 
 	virtual void BeginPlay() override;
+private:
+	const FString constructUrl(TSharedPtr<HttpRequest> requestConf);
+
+public:
+	UPROPERTY(EditAnywhere)
+	FString host_;
+
+private:
+	FHttpModule * Http;
 };

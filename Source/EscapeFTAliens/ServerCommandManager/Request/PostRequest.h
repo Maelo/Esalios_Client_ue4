@@ -21,10 +21,10 @@ public:
 		map = EFTAJsonParser::ParseMapJson(json);
 	}
 
-	EFTAMap* getMap() { return map; }
+	TSharedPtr<EFTAMap> getMap() { return map; }
 
 private:
 
-	EFTAMap* map;
+	TSharedPtr<EFTAMap> map;
 
 };

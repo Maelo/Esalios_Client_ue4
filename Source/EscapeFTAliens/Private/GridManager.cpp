@@ -21,7 +21,7 @@ AGridManager::AGridManager()
 
 	// Set defaults
 	Size = 5;
-	BlockSpacingX = 175;
+	BlockSpacingX = 155;
 	BlockSpacingY = 175;
 
 	GetMaterialRefs();
@@ -46,7 +46,7 @@ AHexBlock * AGridManager::GetHexBlock(FVector2D blockPosition)
 	return nullptr;
 }
 
-void AGridManager::GenerateMap(EFTAMap * map)
+void AGridManager::GenerateMap(TSharedPtr<EFTAMap> map)
 {
 	const TArray<FSector> sectorList = map->getSectorList();
 
@@ -56,7 +56,7 @@ void AGridManager::GenerateMap(EFTAMap * map)
 
 	for (int32 x = 0; x <= sizeMap.X; ++x)
 	{
-		for (int32 y = 0; y <= sizeMap.Y; ++y)
+		for (int32 y = 0; y < sizeMap.Y; ++y)
 		{
 			FSector*  blockSector = nullptr;
 			for (int32 i = 0; i < sectorList.Num(); ++i)
@@ -69,15 +69,13 @@ void AGridManager::GenerateMap(EFTAMap * map)
 				}
 			}
 
-			//TODO
-			const float XOffset = -1 * x * BlockSpacingX  /*+ (-87.5 * (x % 2)) /*+ (87.5 * ((x / Size) % 2)) /*(BlockIndex % Size) * BlockSpacingX +
-				(87.5 * ((BlockIndex / Size) % 2))*/; //Used for the offset for the odd columns
-			const float YOffset = y * BlockSpacingY + (87.5 * (x % 2))/*-1 * BlockSpacingY * (BlockIndex / Size)*/; // Modulo gives remainder
+			const float XOffset = -1 * x * BlockSpacingX;
+			const float YOffset = y * BlockSpacingY + (87.5 * (x % 2));
 
 																			// Make position vector, offset from Grid location
-			const FVector BlockLocation = FVector(YOffset, XOffset, 0.f) + GetActorLocation();
+			const FVector BlockLocation = FVector(YOffset, XOffset, 0.f);// + GetActorLocation();
 
-			FActorSpawnParameters test;
+			
 			// Spawn a block
 			AHexBlock* NewBlock = GetWorld()->SpawnActor<AHexBlock>(BlockLocation, FRotator(0, 0, 0));
 
@@ -124,13 +122,6 @@ void AGridManager::GenerateMap(EFTAMap * map)
 void AGridManager::BeginPlay()
 {
 	Super::BeginPlay();
-
-	//TESTING CODE, generate Map locally (from local json)
-	/*EFTAMap* map;
-
-	map = EFTAJsonParser::ParseMapJson("GALILEITest.json");
-
-	GenerateMap(map);*/
 }
 
 // Called every frame

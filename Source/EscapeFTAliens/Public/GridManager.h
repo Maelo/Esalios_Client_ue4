@@ -44,7 +44,7 @@ public:
 	UMaterialInstanceDynamic* AlienMaterial;
 	UMaterialInstanceDynamic* EscapeMaterial;
 
-	void GenerateMap(EFTAMap* map);
+	void GenerateMap(TSharedPtr<EFTAMap> map);
 
 	AHexBlock* GetHexBlock(FVector2D blockPosition);
 
