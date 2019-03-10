@@ -22,6 +22,13 @@ class ESCAPEFTALIENS_API AGameManager : public AActor
 		Playing 	UMETA(DisplayName = "Playing"),
 		EndGame	UMETA(DisplayName = "EndGame")
 	};
+
+	enum class RoundState : uint8
+	{
+		NotConnected 	UMETA(DisplayName = "NotConnected"),
+		Waiting 	UMETA(DisplayName = "Waiting"),
+		Playing 	UMETA(DisplayName = "Playing")
+	};
 	
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPlayerMoveRequestEvent, AHexBlock*, block);
@@ -50,6 +57,10 @@ public:
 
 	TArray<TSharedPtr<HttpRequest>> WaitCalls_;
 
+private:
+
 	GameState GameState_;
+
+	RoundState RoundState_;
 	
 };

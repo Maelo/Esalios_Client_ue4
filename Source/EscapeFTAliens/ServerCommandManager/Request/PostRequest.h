@@ -9,7 +9,7 @@ class PostGameRequest : public HttpRequest
 {
 public:
 	PostGameRequest()
-		: HttpRequest("/game", HttpRequest::POST)
+		: HttpRequest("/game", HttpRequest::POST, HttpRequest::NameRequest::CreateGame)
 	{
 		addParam(TPair<FString, FString>("username", "yoyo"));
 	}

@@ -7,7 +7,7 @@ class GetPlayerRequest : public HttpRequest
 {
 public:
 	GetPlayerRequest()
-		: HttpRequest("/getPlayer", HttpRequest::GET)
+		: HttpRequest("/getPlayer", HttpRequest::GET, HttpRequest::NameRequest::GetPlayer)
 	{}
 
 	const FVector2D getPosition() const { return position; }

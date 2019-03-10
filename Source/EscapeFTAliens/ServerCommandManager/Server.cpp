@@ -45,6 +45,9 @@ void AServerManager::sendCall(TSharedPtr<HttpRequest> requestConf)
 	Request->SetHeader(TEXT("User-Agent"), "X-UnrealEngine-Agent");
 	Request->SetHeader("Content-Type", TEXT("application/json"));
 	Request->ProcessRequest();
+
+	requestConf->postRequestSent();
+	
 }
 
 void AServerManager::onResponseReceived(FHttpRequestPtr Request, 
@@ -55,9 +58,14 @@ void AServerManager::onResponseReceived(FHttpRequestPtr Request,
 	TSharedPtr<FJsonObject> JsonObject;
 	TSharedRef<TJsonReader<>> JsonReader = TJsonReaderFactory<>::Create(Response->GetContentAsString());
 
+	UE_LOG(LogTemp, Warning, TEXT("Response Code received : %d"), Response->GetResponseCode());
+
 	if (FJsonSerializer::Deserialize(JsonReader, JsonObject))
 	{
 		request->setObjectResponse(JsonObject);
+
+		request->parseJsonResponse();
+		
 		request->setReceivedResponse(true);
 	}
 }

@@ -1,8 +1,6 @@
 #pragma once
 
-
 #include "CoreMinimal.h"
-//#include "JsonParser.generated.h"
 
 class EFTAMap;
 class FString;

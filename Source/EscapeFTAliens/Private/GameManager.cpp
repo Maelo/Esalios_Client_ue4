@@ -25,6 +25,8 @@ void AGameManager::MovePlayer(AHexBlock* block)
 // Called when the game starts or when spawned
 void AGameManager::BeginPlay()
 {
+	GameState_ = GameState::Connecting;
+
 	Super::BeginPlay();
 	OnPlayerMoveRequest.AddDynamic(this, &AGameManager::MovePlayer);
 
@@ -56,9 +58,6 @@ void AGameManager::BeginPlay()
 	ServerManager->sendCall(getPlayerInfo);
 	WaitCalls_.Add(getPlayerInfo);*/
 
-	TSharedPtr <PostGameRequest> postGame(new PostGameRequest());
-	ServerManager->sendCall(postGame);
-	WaitCalls_.Add(postGame);
 }
 
 
@@ -66,40 +65,83 @@ void AGameManager::BeginPlay()
 void AGameManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
-	for (TSharedPtr<HttpRequest> call: WaitCalls_)
+
+	switch (GameState_)
 	{
-		if (call->receivedResponse())
+		case GameState::Connecting:
 		{
-			////TEST Get Player
-			/*GetPlayerRequest* getPlayerRequest = (GetPlayerRequest*)(call.Get());
+			UE_LOG(LogTemp, Warning, TEXT("Connecting..."));
 
-			getPlayerRequest->parseJsonResponse();
+			bool waitingGameRequest = false;
 
-			FVector2D playerPosition = getPlayerRequest->getPosition();
+			for (TSharedPtr<HttpRequest> call : WaitCalls_)
+			{
+				if (call->getNameRequest() == HttpRequest::NameRequest::CreateGame)
+				{
+					waitingGameRequest = true;
 
-			AHexBlock* block = gridManager_->GetHexBlock(playerPosition);
+					if (call->receivedResponse())
+					{
+						PostGameRequest* postgameRequest = (PostGameRequest*)(call.Get());
+						if (postgameRequest)
+						{
+							if (postgameRequest->getMap())
+							{
+								gridManager_->GenerateMap(postgameRequest->getMap());
 
-			MovePlayer(block);*/
-			////
+								call->setHandledResponse(true);
 
-			////TEST Post Game Request
-			PostGameRequest* postgameRequest = (PostGameRequest*)(call.Get());
+								GameState_ = GameState::Playing;
+							}
+							else
+							{
+								UE_LOG(LogTemp, Error, TEXT("Received response from server, but no map parsed... Retrying..."));
 
-			postgameRequest->parseJsonResponse();
+								call->updateIsExpired(true);
+							}
+						}
+					}
+					else
+					{
+						if ( FDateTime::Now() > call->getDateTimeExpiration() )
+						{
+							call->updateIsExpired(true);
+						}
+					}
+				}
+			}
 
-			gridManager_->GenerateMap(postgameRequest->getMap());
-			////
+			if (!waitingGameRequest)
+			{
+				TSharedPtr<PostGameRequest> postGame(new PostGameRequest());
+				ServerManager->sendCall(postGame);
+				WaitCalls_.Add(postGame);
+			}
 
-
-			call->setHandledResponse(true);
+			break;
 		}
-	}
 
+		case GameState::Playing:
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Playing!"));
+			break;
+		}
+
+		case GameState::EndGame:
+		{
+			break;
+		}
+
+		default:
+		{
+			break;
+		}
+		
+	}
 
 	for (int i = WaitCalls_.Num() - 1; i >= 0; --i)
 	{
-		if (WaitCalls_[i]->isHandled())
+		if (WaitCalls_[i]->isHandled() || WaitCalls_[i]->isExpired())
 		{
 			WaitCalls_.RemoveAt(i);
 		}
