@@ -1,7 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 
-#include "ServerCommandManager/Request/Request.h"
+#include "EscapeFTAliens/Public/HttpClient/Request/Request.h"
 
 class GetPlayerRequest : public HttpRequest
 {

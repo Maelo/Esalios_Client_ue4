@@ -4,11 +4,11 @@
 #include "EngineUtils.h"
 
 #include "PlayerRepresentation.h"
-#include "ServerCommandManager/Server.h"
+#include "EscapeFTAliens/Public/HttpClient/Server.h"
 #include "PlayerInfo.h"
 #include "HexCoord.h"
-#include "EscapeFTAliens/ServerCommandManager/Request/GetRequest.h"
-#include "EscapeFTAliens/ServerCommandManager/Request/PostRequest.h"
+#include "EscapeFTAliens/Public/HttpClient/Request/GetRequest.h"
+#include "EscapeFTAliens/Public/HttpClient/Request/PostRequest.h"
 
 // Sets default values
 AGameManager::AGameManager()

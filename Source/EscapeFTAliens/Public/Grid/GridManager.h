@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "EscapeFTAliens/Utilities/EFTAMap.h"
+#include "EscapeFTAliens/Public/Utilities/EFTAMap.h"
 #include "Grid.h"
 
 #include "GridManager.generated.h"

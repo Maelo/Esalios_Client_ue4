@@ -1,7 +1,7 @@
 #include "Server.h"
 #include "Json.h"
 #include "Serialization/JsonSerializer.h"
-#include "EscapeFTAliens/ServerCommandManager/Request/Request.h"
+#include "EscapeFTAliens/Public/HttpClient/Request/Request.h"
 
 const FString AServerManager::constructUrl(TSharedPtr<HttpRequest> requestConf)
 {

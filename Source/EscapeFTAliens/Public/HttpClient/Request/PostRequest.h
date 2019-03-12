@@ -3,7 +3,7 @@
 
 #include "Utilities/JsonParser.h"
 
-#include "ServerCommandManager/Request/Request.h"
+#include "EscapeFTAliens/Public/HttpClient/Request/Request.h"
 
 class PostGameRequest : public HttpRequest
 {
