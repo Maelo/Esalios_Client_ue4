@@ -42,14 +42,12 @@ private:
 	/*UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UTextRenderComponent* TextRender;*/
 
-	EBlockType BlockType_;
+	FString BlockType_;
 
 public:	
 
 	// Sets default values for this actor's properties
 	AHexBlock();
-
-	/*AHexBlock(FVector2D blockCoord, EBlockType blockType);*/
 
 	UFUNCTION(Category = "Collision")
 		void OnCursorOver(UPrimitiveComponent* Component);
@@ -63,9 +61,9 @@ public:
 	const HexCoord& getCoord() const { return HexCoordComponent->getCoord(); };
 	void setCoord(const int x, const int y);
 
-	EBlockType GetBlockType() { return BlockType_; }
+	FString GetBlockType() { return BlockType_; }
 
-	void SetBlockType(EBlockType blockType, UMaterialInstanceDynamic* mat);
+	void SetBlockType(FString blockType, UMaterialInstanceDynamic* mat);
 
 protected:
 	// Called when the game starts or when spawned

@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "JsonStruct/MapStruct.h"
 
 #include "EscapeFTAliens/Public/HttpClient/Request/Request.h"
 
@@ -23,4 +24,29 @@ public:
 	}
 private:
 	FVector2D position;
+};
+
+class GetMapRequest : public HttpRequest
+{
+public:
+	GetMapRequest(FString mapName)
+		: HttpRequest("/map", HttpRequest::GET, "GetMap")
+		, mapName_(mapName)
+	{
+		addParam(TPair<FString, FString>("name", mapName));
+	}
+
+	const FString getMapName() const { return mapName_; }
+
+	virtual void parseJsonResponse()
+	{
+		TSharedPtr<FJsonObject> json = getObjectResponse();
+		TSharedPtr<FMapContent> JsonMap = MakeShareable(new FMapContent);
+
+		FJsonObjectConverter::JsonObjectToUStruct<FMapContent>(
+			json.ToSharedRef(),
+			JsonMap.Get(), 0, 0);
+	}
+private:
+	FString mapName_;
 };

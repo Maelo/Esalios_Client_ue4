@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 
 #include "Json.h"
+#include "Public/JsonObjectConverter.h"
 #include "Containers/Array.h"
 #include "Misc/Timespan.h"
 
@@ -24,18 +25,20 @@ public:
 		, nameResquest_(name)
 		, timeCreated_(FDateTime::Now())
 		, expiredAfterSec_(expiredAfter_)
-	{}
+	{
+		headers.Add(TPair<FString, FString>(TEXT("User-Agent"), "X-UnrealEngine-Agent"));
+		headers.Add(TPair<FString, FString>("Content-Type", TEXT("application/json")));
+	}
+
+	virtual ~HttpRequest() {}
 
 	FString getUrlPath() { return urlPath_; }
 
 	Type getType(){ return type_; }
 
-	TSharedPtr<FJsonObject> getObjectResponse(){ return objectResponse; };
+	TSharedPtr<FJsonObject> getObjectResponse(){ return objectResponse; }
 
-	void setObjectResponse(TSharedPtr<FJsonObject> jsonObject) 
-	{ 
-		objectResponse = jsonObject; 
-	};
+	void setObjectResponse(TSharedPtr<FJsonObject> jsonObject) { objectResponse = jsonObject; }
 
 	bool receivedResponse() { return receivedReponse_; }
 
@@ -59,12 +62,20 @@ public:
 
 	TArray<TPair<FString, FString>>& getParams() { return params; }
 
-	virtual void parseJsonResponse() {};
+	void addHeader(TPair<FString, FString> header) { params.Add(header); }
+
+	TArray<TPair<FString, FString>>& getHeaders() { return headers; }
+
+	void setContent(const FString& jsonContent) { content_ = jsonContent; }
+
+	const FString& getContent() { return content_; }
 
 	void postRequestSent()
 	{
 		dateTimeExpiration_ = FDateTime::Now() + FTimespan(0, 0, expiredAfterSec_);
 	}
+
+	virtual void parseJsonResponse() = 0;
 
 private:
 	FString urlPath_;
@@ -80,6 +91,10 @@ private:
 	bool expired_;
 
 	TArray<TPair<FString, FString>> params;
+
+	TArray<TPair<FString, FString>> headers;
+
+	FString content_;
 
 	FString nameResquest_;
 

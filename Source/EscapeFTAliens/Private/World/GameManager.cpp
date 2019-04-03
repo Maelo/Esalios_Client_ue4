@@ -78,39 +78,43 @@ void AGameManager::Tick(float DeltaTime)
 
 			for (TSharedPtr<HttpRequest> call : WaitCalls_)
 			{
-				if (call->getNameRequest() == "GameRequest")
+				if (call->getNameRequest() != "GameRequest")
 				{
-					waitingGameRequest = true;
+					continue;
+				}
 
-					if (call->receivedResponse())
+				waitingGameRequest = true;
+
+				if (!call->receivedResponse())
+				{
+					if (FDateTime::Now() > call->getDateTimeExpiration())
 					{
-						PostGameRequest* postgameRequest = (PostGameRequest*)(call.Get());
-						if (postgameRequest)
-						{
-							postgameRequest->getMap();
-							if (postgameRequest->getMap().IsValid())
-							{
-								gridManager_->GenerateMap(postgameRequest->getMap());
-
-								call->setHandledResponse(true);
-
-								GameState_ = GameState::Playing;
-							}
-							else
-							{
-								UE_LOG(LogTemp, Error, TEXT("Received response from server, but no map parsed... Retrying..."));
-
-								call->updateIsExpired(true);
-							}
-						}
+						call->updateIsExpired(true);
 					}
-					else
-					{
-						if ( FDateTime::Now() > call->getDateTimeExpiration() )
-						{
-							call->updateIsExpired(true);
-						}
-					}
+
+					continue;
+				}
+
+				PostGameRequest* postgameRequest = (PostGameRequest*)(call.Get());
+				if (!postgameRequest)
+				{
+					continue;
+				}
+
+				if (postgameRequest->getGame().IsValid())
+				{
+					gridManager_->GenerateMap(postgameRequest->getGame()->mapContent);
+
+					call->setHandledResponse(true);
+
+					GameState_ = GameState::Playing;
+					RoundState_ = RoundState::Waiting;
+				}
+				else
+				{
+					UE_LOG(LogTemp, Error, TEXT("Received response from server, but no map parsed... Retrying..."));
+
+					call->updateIsExpired(true);
 				}
 			}
 
@@ -126,7 +130,20 @@ void AGameManager::Tick(float DeltaTime)
 
 		case GameState::Playing:
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Playing!"));
+			switch (RoundState_)
+			{
+			case(RoundState::Waiting) :
+			{
+				//Call is it my turn
+			}
+			case(RoundState::Playing) :
+			{
+				//Its my turn, playing, I will send a call when I selected a tile to move to.
+				UE_LOG(LogTemp, Warning, TEXT("Playing!"));
+			}
+			default:
+				break;
+			}
 			break;
 		}
 

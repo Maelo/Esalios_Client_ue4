@@ -91,7 +91,7 @@ void AHexBlock::setCoord(const int x, const int y)
 	HexCoordComponent->setCoord(x, y);
 }
 
-void AHexBlock::SetBlockType(EBlockType blockType, UMaterialInstanceDynamic* mat)
+void AHexBlock::SetBlockType(FString blockType, UMaterialInstanceDynamic* mat)
 {
 	BlockType_ = blockType;
 	BlockMesh->CreateAndSetMaterialInstanceDynamicFromMaterial(0, mat);

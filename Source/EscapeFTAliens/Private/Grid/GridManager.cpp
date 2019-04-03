@@ -7,7 +7,7 @@
 #include "Public/EngineUtils.h"
 #include "HexBlock.h"
 
-#include "Utilities/JsonParser.h"
+#include "JsonStruct/MapStruct.h"
 
 #include "FileManager.h"
 #include "Misc/Paths.h"
@@ -46,25 +46,21 @@ AHexBlock * AGridManager::GetHexBlock(FVector2D blockPosition)
 	return nullptr;
 }
 
-void AGridManager::GenerateMap(TSharedPtr<EFTAMap> map)
+void AGridManager::GenerateMap(const FMapContent& map)
 {
-	const TArray<FSector> sectorList = map->getSectorList();
-
-	sizeMap = map->getSize();
-
+	sizeMap = FVector2D(map.size.x, map.size.y);
 	grid.AddUninitialized(sizeMap.X + 1, sizeMap.Y + 1);
 
 	for (int32 x = 0; x <= sizeMap.X; ++x)
 	{
 		for (int32 y = 0; y < sizeMap.Y; ++y)
 		{
-			FSector*  blockSector = nullptr;
-			for (int32 i = 0; i < sectorList.Num(); ++i)
+			int idxFound = -1;
+			for (int32 i = 0; i < map.sectorList.Num(); ++i)
 			{
-				FSector tempSector = sectorList[i];
-				if (tempSector.getX() == x && tempSector.getY() == y)
+				if (FCString::Atoi(*map.sectorList[i].x) == x && FCString::Atoi(*map.sectorList[i].y) == y)
 				{
-					blockSector = &tempSector;
+					idxFound = i;
 					break;
 				}
 			}
@@ -81,36 +77,36 @@ void AGridManager::GenerateMap(TSharedPtr<EFTAMap> map)
 
 			NewBlock->setCoord(x, y);
 
-			if (blockSector)
+			if (idxFound != -1)
 			{
-				switch (blockSector->type)
+				auto blockSector = map.sectorList[idxFound];
+				if (blockSector.state == "safe")
 				{
-				case EBlockType::BT_SECURE:
-					NewBlock->SetBlockType(blockSector->type, SecureMaterial);
-					break;
-				case EBlockType::BT_DANGER:
-					NewBlock->SetBlockType(blockSector->type, DangerMaterial);
-					break;
-				case EBlockType::BT_HUMAN:
-					NewBlock->SetBlockType(blockSector->type, HumanMaterial);
-					break;
-				case EBlockType::BT_ALIEN:
-					NewBlock->SetBlockType(blockSector->type, AlienMaterial);
-					break;
-				case EBlockType::BT_ESCAPE:
-					NewBlock->SetBlockType(blockSector->type, EscapeMaterial);
-					break;
-				case EBlockType::BT_BLOCKED:
-					NewBlock->SetBlockType(blockSector->type, BlockedMaterial);
-					break;
-				default:
-					NewBlock->SetBlockType(blockSector->type, SecureMaterial);
-					break;
+					NewBlock->SetBlockType(blockSector.state, SecureMaterial);
+				}
+				else if (blockSector.state == "dangerous")
+				{
+					NewBlock->SetBlockType(blockSector.state, DangerMaterial);
+				}
+				else if (blockSector.state == "hatch")
+				{
+					NewBlock->SetBlockType(blockSector.state, EscapeMaterial);
+				}
+				else if (blockSector.state == "alien")
+				{
+					NewBlock->SetBlockType(blockSector.state, AlienMaterial);
+				}
+				else if (blockSector.state == "human")
+				{
+					NewBlock->SetBlockType(blockSector.state, HumanMaterial);
+				}
+				else {
+					NewBlock->SetBlockType(blockSector.state, BlockedMaterial);
 				}
 			}
 			else
 			{
-				NewBlock->SetBlockType(EBlockType::BT_BLOCKED, BlockedMaterial);
+				NewBlock->SetBlockType("blocked", BlockedMaterial);
 			}
 
 			grid.Rows[x].Columns[y] = NewBlock->GetName();

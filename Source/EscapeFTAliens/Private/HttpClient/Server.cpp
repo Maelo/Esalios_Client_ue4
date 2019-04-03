@@ -13,8 +13,6 @@ const FString AServerManager::constructUrl(TSharedPtr<HttpRequest> requestConf)
 	{
 		url += "?";
 
-
-
 		for (int i = 0; i < paramList.Num(); i++) {
 			TPair<FString, FString> paramPair = paramList[i];
 
@@ -49,6 +47,16 @@ void AServerManager::sendCall(TSharedPtr<HttpRequest> requestConf)
 		Request->SetVerb("POST");
 	}
 	
+	for (const auto& header : requestConf->getHeaders())
+	{
+		Request->SetHeader(header.Key, header.Value);
+	}
+
+	if (requestConf->getType() == HttpRequest::POST && !requestConf->getContent().IsEmpty())
+	{
+		Request->SetContentAsString(requestConf->getContent());
+	}
+
 	Request->SetHeader(TEXT("User-Agent"), "X-UnrealEngine-Agent");
 	Request->SetHeader("Content-Type", TEXT("application/json"));
 	Request->ProcessRequest();
@@ -62,6 +70,11 @@ void AServerManager::onResponseReceived(FHttpRequestPtr Request,
 										TSharedPtr<HttpRequest> request)
 {
 	TSharedPtr<FJsonObject> JsonObject;
+	if (!Response.IsValid())
+	{
+		return;
+	}
+
 	TSharedRef<TJsonReader<>> JsonReader = TJsonReaderFactory<>::Create(Response->GetContentAsString());
 
 	UE_LOG(LogTemp, Warning, TEXT("Response Code received : %d"), Response->GetResponseCode());
@@ -78,6 +91,7 @@ void AServerManager::onResponseReceived(FHttpRequestPtr Request,
 
 AServerManager::AServerManager(const FObjectInitializer & ObjectInitializer)
 	: Http(&FHttpModule::Get())
+	//, host_("http://127.0.0.1:5000")
 	, host_("https://qxjasvc7j1.execute-api.us-east-1.amazonaws.com/Prod")
 {
 }

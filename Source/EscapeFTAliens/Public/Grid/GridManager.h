@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "EscapeFTAliens/Public/Utilities/EFTAMap.h"
+#include "JsonStruct/MapStruct.h"
 #include "Grid.h"
 
 #include "GridManager.generated.h"
@@ -44,7 +44,7 @@ public:
 	UMaterialInstanceDynamic* AlienMaterial;
 	UMaterialInstanceDynamic* EscapeMaterial;
 
-	void GenerateMap(TSharedPtr<EFTAMap> map);
+	void GenerateMap(const FMapContent& map);
 
 	AHexBlock* GetHexBlock(FVector2D blockPosition);
 
