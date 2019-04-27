@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "PlayerInfo.generated.h"
 
+class UHexCoordComponent;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class ESCAPEFTALIENS_API UPlayerInfo : public UActorComponent
@@ -26,10 +27,14 @@ public:
 
 	bool UpdatePosition(const int x,const int y);
 
+	const FString& GetUniqueID() { return uniqueID; }
+
+	void SetUniqueID(const FString& newUniqueID);
+
 private:
 	// Current position of the player
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	class UHexCoordComponent* HexCoord;
+	UHexCoordComponent* HexCoord;
 
 	//UID
 	FString uniqueID;

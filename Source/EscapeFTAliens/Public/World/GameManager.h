@@ -5,10 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Containers/Array.h"
-#include "HexBlock.h"
 #include "GameManager.generated.h"
 
 class AServerManager;
+class AHexBlock;
+class AGridManager;
 class HttpRequest;
 
 UCLASS()

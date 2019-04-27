@@ -1,52 +1,81 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "JsonStruct/MapStruct.h"
+#include "JsonStruct/PlayerStruct.h"
+#include "JsonStruct/MapStruct.h"
 
 #include "EscapeFTAliens/Public/HttpClient/Request/Request.h"
 
-class GetPlayerRequest : public HttpRequest
+class GetPlayerPositionRequest : public HttpRequest
 {
 public:
-	GetPlayerRequest()
-		: HttpRequest("/getPlayer", HttpRequest::GET, "GetPlayer")
-	{}
-
-	const FVector2D getPosition() const { return position; }
+	GetPlayerPositionRequest(FString uniqueID)
+		: HttpRequest("/getPlayerPosition", HttpRequest::GET, "GetPlayerPosition")
+	{
+		addParam(TPair<FString, FString>("playerID", uniqueID));
+	}
 
 	virtual void parseJsonResponse()
 	{
 		TSharedPtr<FJsonObject> json = getObjectResponse();
+		playerPosition = MakeShareable(new FPlayerPosition);
 
-		TSharedPtr<FJsonObject> positionObj = json->GetObjectField("PlayerPosition");
-
-		position.X = positionObj->GetIntegerField("x");
-		position.Y = positionObj->GetIntegerField("y");
+		FJsonObjectConverter::JsonObjectToUStruct<FPlayerPosition>(
+			json.ToSharedRef(),
+			playerPosition.Get(), 0, 0);
 	}
+
+	const TSharedPtr<FPlayerPosition>& getPlayerPosition() { return playerPosition; }
+
 private:
-	FVector2D position;
+	TSharedPtr<FPlayerPosition> playerPosition;
 };
 
 class GetMapRequest : public HttpRequest
 {
 public:
-	GetMapRequest(FString mapName)
+	GetMapRequest(FString gameID)
 		: HttpRequest("/map", HttpRequest::GET, "GetMap")
-		, mapName_(mapName)
 	{
-		addParam(TPair<FString, FString>("name", mapName));
+		addParam(TPair<FString, FString>("gameID", gameID));
 	}
-
-	const FString getMapName() const { return mapName_; }
 
 	virtual void parseJsonResponse()
 	{
 		TSharedPtr<FJsonObject> json = getObjectResponse();
-		TSharedPtr<FMapContent> JsonMap = MakeShareable(new FMapContent);
+		mapContent = MakeShareable(new FMapContent);
 
 		FJsonObjectConverter::JsonObjectToUStruct<FMapContent>(
 			json.ToSharedRef(),
-			JsonMap.Get(), 0, 0);
+			mapContent.Get(), 0, 0);
 	}
+
+	const TSharedPtr<FMapContent>& getMapContent() { return mapContent; }
+
 private:
-	FString mapName_;
+	TSharedPtr<FMapContent> mapContent;
+};
+
+class GetPlayerTurn : public HttpRequest
+{
+public:
+	GetPlayerTurn()
+		: HttpRequest("/turn", HttpRequest::GET, "GetTurn")
+	{
+	}
+
+	virtual void parseJsonResponse()
+	{
+		TSharedPtr<FJsonObject> json = getObjectResponse();
+		playerTurn = MakeShareable(new FPlayerID);
+
+		FJsonObjectConverter::JsonObjectToUStruct<FPlayerID>(
+			json.ToSharedRef(),
+			playerTurn.Get(), 0, 0);
+	}
+
+	const TSharedPtr<FPlayerID>& getPlayerTurn() { return playerTurn; }
+
+private:
+	TSharedPtr<FPlayerID> playerTurn;
 };

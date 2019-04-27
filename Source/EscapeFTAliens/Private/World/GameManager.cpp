@@ -6,6 +6,7 @@
 #include "PlayerRepresentation.h"
 #include "EscapeFTAliens/Public/HttpClient/Server.h"
 #include "PlayerInfo.h"
+#include "HexBlock.h"
 #include "HexCoord.h"
 #include "EscapeFTAliens/Public/HttpClient/Request/GetRequest.h"
 #include "EscapeFTAliens/Public/HttpClient/Request/PostRequest.h"
@@ -107,6 +108,9 @@ void AGameManager::Tick(float DeltaTime)
 
 					call->setHandledResponse(true);
 
+					//TODO set player uuid here
+					//PlayerRepresentation->GetPlayerInfo()->SetUniqueID()
+
 					GameState_ = GameState::Playing;
 					RoundState_ = RoundState::Waiting;
 				}
@@ -135,11 +139,21 @@ void AGameManager::Tick(float DeltaTime)
 			case(RoundState::Waiting) :
 			{
 				//Call is it my turn
+				UE_LOG(LogTemp, Warning, TEXT("Waiting for my turn!"));
+
+				//GetPlayerTurn* playerTurnRequest = (GetPlayerTurn*)(call.Get());
+				//Compare playerTurn.playerID with PlayerRepresentation->GetPlayerInfo()->GetUniqueID()
+				//if equal RoundState ==> PlayingState
+				break;
 			}
 			case(RoundState::Playing) :
 			{
 				//Its my turn, playing, I will send a call when I selected a tile to move to.
+				//Wait for player to select a tile to move to
+				//And with the tile coordinate selected, send a MoveRequest and wait for the response
+				//If the response is valid, go back to Waiting state.
 				UE_LOG(LogTemp, Warning, TEXT("Playing!"));
+				break;
 			}
 			default:
 				break;

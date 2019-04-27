@@ -40,3 +40,8 @@ bool UPlayerInfo::UpdatePosition(const int x, const int y)
 	return true;
 }
 
+void UPlayerInfo::SetUniqueID(const FString& newUniqueID)
+{
+	uniqueID = newUniqueID;
+}
+

@@ -32,3 +32,24 @@ struct FPlayers
 	UPROPERTY()
 	TArray<FPlayerStruct> players;
 };
+
+USTRUCT()
+struct FPlayerID
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY()
+	FString playerID;
+};
+
+USTRUCT()
+struct FPlayerPosition
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY()
+	int x;
+
+	UPROPERTY()
+	int y;
+};

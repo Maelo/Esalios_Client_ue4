@@ -7,6 +7,8 @@
 #include "PlayerRepresentation.generated.h"
 
 class AHexBlock;
+class UStaticMeshComponent;
+class UPlayerInfo;
 
 UCLASS()
 class ESCAPEFTALIENS_API APlayerRepresentation : public AActor
@@ -19,6 +21,8 @@ public:
 
 	void updatePosition(AHexBlock*);
 
+	UPlayerInfo *GetPlayerInfo() { return PlayerInfo; };
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -28,8 +32,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY()
-	class UStaticMeshComponent* Mesh;
+	UStaticMeshComponent* Mesh;
 
-	class UPlayerInfo* PlayerInfo;
+	UPROPERTY()
+	UPlayerInfo* PlayerInfo;
 	
 };
