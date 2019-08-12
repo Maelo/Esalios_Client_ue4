@@ -1,2 +1,8 @@
-All your base are belong to us
-=================
+This is a project for learning purposes only.
+
+This is an Unreal Engine client of the board game called "Escape from the Aliens in Outer Space".
+
+https://boardgamegeek.com/boardgame/82168/escape-aliens-outer-space
+
+This is a standard HTTP Client-Server architecture. The client is in charge of the display and the connection to the server.
+The server is in charge of the game management, rules and validations.
