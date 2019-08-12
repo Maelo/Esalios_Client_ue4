@@ -14,6 +14,7 @@ public:
 	{
 		TSharedPtr<FJsonObject> root(MakeShareable(new FJsonObject));
 
+		//TODO
 		root->SetStringField("username", "yoyo");
 		
 		//Write jsonObject to FString
@@ -49,6 +50,7 @@ public:
 	{
 		TSharedPtr<FJsonObject> root(MakeShareable(new FJsonObject));
 
+		//TODO
 		root->SetStringField("username", "yoyo");
 
 		//Write jsonObject to FString

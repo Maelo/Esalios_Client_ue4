@@ -31,7 +31,6 @@ APlayerCamera::APlayerCamera()
 void APlayerCamera::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 void APlayerCamera::MoveRight(float Val)
@@ -48,7 +47,6 @@ void APlayerCamera::MoveUp(float Val)
 void APlayerCamera::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -58,6 +56,5 @@ void APlayerCamera::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 	PlayerInputComponent->BindAxis("CameraRight", this, &APlayerCamera::MoveRight);
 	PlayerInputComponent->BindAxis("CameraUp", this, &APlayerCamera::MoveUp);
-
 }
 

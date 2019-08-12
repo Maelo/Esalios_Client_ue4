@@ -8,5 +8,4 @@ void APlayerScrollerController::SetupInputComponent()
 
 	bEnableMouseOverEvents = true;
 	bEnableClickEvents = true;
-
 }

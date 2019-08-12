@@ -25,6 +25,7 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	UFUNCTION()
 	bool UpdatePosition(const int x,const int y);
 
 	const FString& GetUniqueID() { return uniqueID; }

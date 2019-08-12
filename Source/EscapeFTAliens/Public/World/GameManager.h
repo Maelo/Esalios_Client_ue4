@@ -33,6 +33,7 @@ class ESCAPEFTALIENS_API AGameManager : public AActor
 	
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPlayerMoveRequestEvent, AHexBlock*, block);
+
 public:	
 	// Sets default values for this actor's properties
 	AGameManager();
@@ -47,6 +48,7 @@ protected:
 	void Tick(float DeltaTime);
 
 public:	
+
 	UPROPERTY(BlueprintAssignable, Category = "PlayerMoveEvent")
 	FPlayerMoveRequestEvent OnPlayerMoveRequest;
 

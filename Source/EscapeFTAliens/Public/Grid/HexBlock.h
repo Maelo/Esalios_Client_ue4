@@ -39,9 +39,6 @@ private:
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	USceneComponent* PlayerPositionComponent;
 
-	/*UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	class UTextRenderComponent* TextRender;*/
-
 	FString BlockType_;
 
 public:	
@@ -80,7 +77,4 @@ public:
 
 	/** Returns HexCoord subobject **/
 	FORCEINLINE class UHexCoordComponent* GetHexCoord() const { return HexCoordComponent; }
-
-	/** Returns TextRender subobject **/
-	//FORCEINLINE class UTextRenderComponent* GetTextRender() const { return TextRender; }
 };

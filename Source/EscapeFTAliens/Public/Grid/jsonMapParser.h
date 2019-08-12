@@ -18,9 +18,6 @@ public:
 	// Sets default values for this actor's properties
 	AjsonMapParser();
 
-protected:
-
 public:	
-
 	void ParseJson(FString jsonName);
 };

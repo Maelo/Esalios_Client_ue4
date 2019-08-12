@@ -13,6 +13,4 @@ UCLASS()
 class ESCAPEFTALIENS_API AGameStateEfaios : public AGameStateBase
 {
 	GENERATED_BODY()
-	
-	
 };

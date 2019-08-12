@@ -25,7 +25,7 @@ private:
 
 public:
 	UPROPERTY(EditAnywhere)
-	FString host_;
+	FString Host;
 
 private:
 	FHttpModule * Http;

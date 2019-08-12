@@ -17,5 +17,4 @@ class ESCAPEFTALIENS_API AGameModeEftaios : public AGameModeBase
 public:
 	// Sets default values for this character's properties
 	AGameModeEftaios(const FObjectInitializer& ObjectInitializer);
-	
 };

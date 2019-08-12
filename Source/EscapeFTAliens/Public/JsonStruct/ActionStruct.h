@@ -25,8 +25,8 @@ struct FMoveRequest
 
 	FMoveRequest() {};
 	FMoveRequest(int32 newPositionX, int32 newPositionY, FString movePlayerID)
-		:x(newPositionX),
-		y(newPositionY),
-		playerID(movePlayerID)
+		: playerID(movePlayerID)
+		, x(newPositionX)
+		, y(newPositionY)
 	{};
 };

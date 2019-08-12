@@ -10,8 +10,6 @@ UPlayerInfo::UPlayerInfo()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
 }
 
 
@@ -19,8 +17,6 @@ UPlayerInfo::UPlayerInfo()
 void UPlayerInfo::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// ...
 	
 }
 
@@ -29,8 +25,6 @@ void UPlayerInfo::BeginPlay()
 void UPlayerInfo::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
 }
 
 bool UPlayerInfo::UpdatePosition(const int x, const int y)

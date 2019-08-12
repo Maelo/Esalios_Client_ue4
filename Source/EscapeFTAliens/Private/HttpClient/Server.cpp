@@ -5,7 +5,7 @@
 
 const FString AServerManager::constructUrl(TSharedPtr<HttpRequest> requestConf)
 {
-	FString url(host_ + requestConf->getUrlPath());
+	FString url(Host + requestConf->getUrlPath());
 
 	auto paramList = requestConf->getParams();
 
@@ -90,9 +90,8 @@ void AServerManager::onResponseReceived(FHttpRequestPtr Request,
 }
 
 AServerManager::AServerManager(const FObjectInitializer & ObjectInitializer)
-	: Http(&FHttpModule::Get())
-	//, host_("http://127.0.0.1:5000")
-	, host_("https://qxjasvc7j1.execute-api.us-east-1.amazonaws.com/Prod")
+	: Host("https://qxjasvc7j1.execute-api.us-east-1.amazonaws.com/Prod")
+	, Http(&FHttpModule::Get())
 {
 }
 

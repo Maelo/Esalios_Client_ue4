@@ -13,6 +13,7 @@ APlayerRepresentation::APlayerRepresentation()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
+	//TODO, At the moment, the player representation is only a cube.
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> CubeMeshAsset(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Cube.Shape_Cube'"));
 
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
@@ -37,6 +38,7 @@ void APlayerRepresentation::updatePosition(AHexBlock* block)
 	}
 
 	SetActorLocation(block->GetActorLocation());
+
 	//TODO
 	//PlayerInfo->UpdatePosition(block->getCoord().getx(), block->getCoord().gety());
 }

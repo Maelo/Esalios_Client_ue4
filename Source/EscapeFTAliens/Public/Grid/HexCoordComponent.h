@@ -26,7 +26,8 @@ public:
 	UHexCoordComponent(const TPair<int,int> coord) : hexCoord_(coord) {};
 
 	void setCoord(const int x, const int y) { hexCoord_.setCoord( TPair<int, int>(x, y) ); }
-	void setCoord(TPair<int, int> coord) { hexCoord_.setCoord(coord); }
+
+	void setCoord(const TPair<int, int>& coord) { hexCoord_.setCoord(coord); }
 
 	const HexCoord& getCoord() const { return hexCoord_; }
 };

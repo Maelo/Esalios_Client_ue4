@@ -31,6 +31,7 @@ AHexBlock::AHexBlock()
 		{
 		}
 	};
+
 	static FConstructorStatics ConstructorStatics;
 
 	DummyRoot = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponent0"));

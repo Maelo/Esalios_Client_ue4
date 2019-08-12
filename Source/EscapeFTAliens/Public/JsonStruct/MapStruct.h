@@ -15,10 +15,10 @@ struct FSectorStruct
 	FString x;
 
 	UPROPERTY()
-		FString y;
+	FString y;
 
 	UPROPERTY()
-		FString state;
+	FString state;
 };
 
 USTRUCT()
@@ -26,11 +26,11 @@ struct FSize
 {
 	GENERATED_USTRUCT_BODY()
 
-		UPROPERTY()
-		int x;
+	UPROPERTY()
+	int x;
 
 	UPROPERTY()
-		int y;
+	int y;
 };
 
 USTRUCT()
